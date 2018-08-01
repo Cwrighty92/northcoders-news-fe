@@ -1,0 +1,18 @@
+.single-article {
+  border: solid black 1px;
+  width: 320px;
+  text-align: center;
+  margin: 10px;
+  background-color: aliceblue;
+}
+
+.article-page {
+  min-width: 320px;
+}
+
+.comment-pane {
+  width: 320px;
+  height: auto;
+  display: flex;
+  margin: 10px;
+}

@@ -1,0 +1,17 @@
+.article-tabs {
+  border: solid black 1px;
+  width: 320px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: 10px;
+  background-color: aliceblue;
+}
+
+.article-window {
+  min-width: 320px;
+  height: auto;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}

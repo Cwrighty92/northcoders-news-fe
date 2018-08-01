@@ -1,0 +1,36 @@
+.App {
+  text-align: center;
+}
+header {
+  display: flex;
+  justify-content: center;
+}
+.nav-bar {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+}
+.nav-bar-header {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+}
+.nav-item {
+  text-decoration: none;
+  color: black;
+  margin: 5px;
+}
+.nav-item:hover {
+  text-decoration: none;
+  color: blue;
+  margin: 5px;
+}
+
+.app-page {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.articles {
+  display: flex;
+  justify-content: center;
+}
