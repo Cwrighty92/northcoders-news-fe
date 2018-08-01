@@ -4,6 +4,8 @@ import "./App.css";
 import * as api from "./Api";
 import Articles from "./Components/Articles";
 import Article from "./Components/Article";
+import Users from "./Components/Users";
+import User from "./Components/User";
 // import LogIn from "./Components/LogIn";
 class App extends Component {
   state = {
@@ -29,13 +31,12 @@ class App extends Component {
   render() {
     return (
       <div className="app-page">
-        {/* <LogIn /> */}
         <nav className="nav-bar-header">
           <NavLink to={"/"} className="nav-item">
             Articles
           </NavLink>
           <NavLink to={"/users"} className="nav-item">
-            Active Members
+            Members
           </NavLink>
         </nav>
         <header>
@@ -55,14 +56,14 @@ class App extends Component {
           })}
         </nav>
 
-        <div className="articles">
+        <div className="pages">
           <Route
             exact
             path="/"
             render={() => <Articles articles={this.state.articles} />}
           />
         </div>
-        <div className="articles">
+        <div className="pages">
           <Route
             exact
             path="/topics/:topicid"
@@ -74,13 +75,27 @@ class App extends Component {
             )}
           />
         </div>
-        <div className="articles">
+        <div className="pages">
           <Route
             exact
             path="/articles/:articleid"
             render={props => (
               <Article articleId={props.match.params.articleid} />
             )}
+          />
+        </div>
+        <div className="pages">
+          <Route
+            exact
+            path="/users"
+            render={props => <Users users={this.state.users} />}
+          />
+        </div>
+        <div className="pages">
+          <Route
+            exact
+            path="/users/:username"
+            render={props => <User username={props.match.params.username} />}
           />
         </div>
       </div>

@@ -2,9 +2,8 @@
   height: 210px;
   width: 190px;
 }
-.user-tabs {
+.user-pane {
   display: flex;
   flex-direction: column;
-  text-align: center;
   align-items: center;
 }
