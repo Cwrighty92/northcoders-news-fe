@@ -14,6 +14,7 @@ class Articles extends Component {
     }
 
     return (
+      // seperate this out
       <div className="article-window">
         <h3>Articles({filteredArticles.length})</h3>
         <div className="sort-buttons">
@@ -35,6 +36,7 @@ class Articles extends Component {
           </button>
         </div>
         {filteredArticles.map(article => {
+          //Seperate this out
           return (
             <div className="article-tabs" key={article._id}>
               <div className="article-body">
