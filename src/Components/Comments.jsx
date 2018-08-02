@@ -5,6 +5,7 @@ import VoteCommentButtons from "./VoteCommentButtons";
 import PostComment from "./PostComment";
 import CommentBody from "./CommentBody";
 import SortCommentButtons from "./SortCommentButtons";
+import DeleteButton from "./DeleteButton";
 
 class Comments extends Component {
   state = {
@@ -43,6 +44,12 @@ class Comments extends Component {
                   <VoteCommentButtons
                     comment={comment}
                     handleVote={this.handleVote}
+                  />
+                )}
+                {comment.created_by.username === "tickle122" && (
+                  <DeleteButton
+                    deleteComment={this.deleteComment}
+                    comment={comment}
                   />
                 )}
               </div>
@@ -99,9 +106,28 @@ class Comments extends Component {
       belongs_to: articleid,
       created_by: "5b5efa1381b62f331a19c653"
     };
+    api
+      .postComment(articleid, data)
+      .then(({ data: { comment } }) => {
+        this.setState({ comments: [...this.state.comments, comment] });
+      })
+      .then(() => {
+        api
+          .fetchArticleComments(this.props.articleId)
+          .then(({ data }) => {
+            this.setState({ comments: data.comments });
+          })
+          .catch(console.log);
+      });
+  };
+  deleteComment = commentToDelete => {
+    const updatedComments = this.state.comments.filter(comment => {
+      return comment !== commentToDelete;
+    });
+    this.setState({ comments: updatedComments });
 
-    api.postComment(articleid, data).then(({ data: { comment } }) => {
-      this.setState({ comments: [...this.state.comments, comment] });
+    api.deleteComment(commentToDelete._id).catch(err => {
+      this.setState({ invalidComment: true });
     });
   };
 }
