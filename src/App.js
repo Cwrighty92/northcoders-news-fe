@@ -1,66 +1,49 @@
 import React, { Component } from "react";
-import { NavLink, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import "./App.css";
 import * as api from "./Api";
 import Articles from "./Components/Articles";
 import Article from "./Components/Article";
 import Users from "./Components/Users";
 import User from "./Components/User";
-// import LogIn from "./Components/LogIn";
+import TopNavBar from "./Components/TopNavBar";
+import Heading from "./Components/Heading";
+import Topics from "./Components/Topics";
+
 class App extends Component {
   state = {
     articles: [],
-    topics: [],
     users: []
   };
 
   componentDidMount() {
-    return Promise.all([
-      api.fetchArticles(),
-      api.fetchTopics(),
-      api.fetchUsers()
-    ]).then(([articles, topics, users]) => {
-      this.setState({
-        articles: articles.data.articles,
-        topics: topics.data.topics,
-        users: users.data.users
-      });
-    });
+    return Promise.all([api.fetchArticles(), api.fetchUsers()]).then(
+      ([articles, users]) => {
+        this.setState({
+          articles: articles.data.articles,
+          users: users.data.users
+        });
+      }
+    );
   }
 
   render() {
     return (
       <div className="app-page">
-        <nav className="nav-bar-header">
-          <NavLink to={"/"} className="nav-item">
-            Articles
-          </NavLink>
-          <NavLink to={"/users"} className="nav-item">
-            Members
-          </NavLink>
-        </nav>
-        <header>
-          <h1>NorthCoders News</h1>
-        </header>
-        <nav className="nav-bar">
-          {this.state.topics.map((topic, index) => {
-            return (
-              <NavLink
-                to={`/topics/${topic._id}`}
-                className="nav-item"
-                key={index}
-              >
-                {topic.title}
-              </NavLink>
-            );
-          })}
-        </nav>
+        <TopNavBar />
+        <Heading />
+        <Topics />
 
         <div className="pages">
           <Route
             exact
-            path="/"
-            render={() => <Articles articles={this.state.articles} />}
+            path="/articles"
+            render={() => (
+              <Articles
+                articles={this.state.articles}
+                sortArticlesByVotes={this.sortArticlesByVotes}
+              />
+            )}
           />
         </div>
         <div className="pages">
@@ -71,6 +54,7 @@ class App extends Component {
               <Articles
                 articles={this.state.articles}
                 topicId={props.match.params.topicid}
+                sortArticlesByVotes={this.sortArticlesByVotes}
               />
             )}
           />
@@ -80,7 +64,10 @@ class App extends Component {
             exact
             path="/articles/:articleid"
             render={props => (
-              <Article articleId={props.match.params.articleid} />
+              <Article
+                articleId={props.match.params.articleid}
+                addComment={this.addComment}
+              />
             )}
           />
         </div>
@@ -95,12 +82,32 @@ class App extends Component {
           <Route
             exact
             path="/users/:username"
-            render={props => <User username={props.match.params.username} />}
+            render={props => (
+              <User
+                username={props.match.params.username}
+                comments={this.state.comments}
+                articles={this.state.articles}
+              />
+            )}
           />
         </div>
       </div>
     );
   }
+  sortArticlesByVotes = sortOption => {
+    let sortedArticles = [];
+    if (sortOption === "pop") {
+      sortedArticles = [...this.state.articles].sort((articleA, articleB) => {
+        return articleB.votes - articleA.votes;
+      });
+      this.setState({ articles: sortedArticles });
+    } else if (sortOption === "time") {
+      sortedArticles = [...this.state.articles].sort((articleA, articleB) => {
+        return articleB.created_at - articleA.created_at;
+      });
+      this.setState({ articles: sortedArticles });
+    }
+  };
 }
 
 export default App;

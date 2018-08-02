@@ -17,28 +17,16 @@ export const fetchUser = usernameid => {
   return axios.get(`${apiUrl}/users/${usernameid}`);
 };
 
-export const fetchArticleByTopic = topicid => {
-  return axios.get(`${apiUrl}/topics/${topicid}/articles`);
-};
-
 export const fetchArticle = articleid => {
   return axios.get(`${apiUrl}/articles/${articleid}`);
 };
 
-export const upVoteArticle = articleid => {
-  return axios.put(`${apiUrl}/articles/${articleid}?vote=up`);
+export const voteOnArticle = (articleid, voteOption) => {
+  return axios.put(`${apiUrl}/articles/${articleid}?vote=${voteOption}`);
 };
 
-export const downVoteArticle = articleid => {
-  return axios.put(`${apiUrl}/articles/${articleid}?vote=down`);
-};
-
-export const upVoteComment = commentid => {
-  return axios.put(`${apiUrl}/comments/${commentid}?vote=up`);
-};
-
-export const downVoteComment = commentid => {
-  return axios.put(`${apiUrl}/comments/${commentid}?vote=down`);
+export const voteOnComment = (commentid, voteOption) => {
+  return axios.put(`${apiUrl}/comments/${commentid}?vote=${voteOption}`);
 };
 
 export const fetchArticleComments = articleid => {

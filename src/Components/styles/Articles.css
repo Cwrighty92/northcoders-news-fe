@@ -9,9 +9,15 @@
 }
 
 .article-window {
+  text-align: center;
   min-width: 320px;
   height: auto;
   margin: 10px;
   display: flex;
   flex-direction: column;
+}
+
+.sort-buttons {
+  display: flex;
+  justify-content: center;
 }
