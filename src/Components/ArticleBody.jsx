@@ -11,7 +11,7 @@ const ArticleBody = props => {
       </p>
       <p>{props.article.body}</p>
       <p>Votes: {props.article.votes}</p>
-      <VoteArticleButtons handleVote={props.handleVote} />
+      {props.loggedIn && <VoteArticleButtons handleVote={props.handleVote} />}
     </div>
   );
 };

@@ -2,7 +2,6 @@ import React from "react";
 const ArticleSortButtons = props => {
   return (
     <div className="sort-buttons">
-      {" "}
       <button
         className="sort-button"
         onClick={() => {

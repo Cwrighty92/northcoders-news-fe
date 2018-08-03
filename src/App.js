@@ -11,7 +11,8 @@ import LogIn from "./Components/LogIn";
 
 class App extends Component {
   state = {
-    users: []
+    users: [],
+    loggedIn: false
   };
   componentDidMount() {
     api.fetchUsers().then(({ data }) => {
@@ -21,9 +22,16 @@ class App extends Component {
   render() {
     return (
       <div className="app-page">
-        <TopNavBar />
+        <TopNavBar
+          loggedIn={this.state.loggedIn}
+          handleLogIn={this.handleLogIn}
+        />
         <div className="pages">
-          <Route exact path="/" render={() => <LogIn />} />
+          <Route
+            exact
+            path="/"
+            render={() => <LogIn handleLogIn={this.handleLogIn} />}
+          />
         </div>
         <div className="pages">
           <Route
@@ -58,6 +66,7 @@ class App extends Component {
               <Article
                 articleId={props.match.params.articleid}
                 addComment={this.addComment}
+                loggedIn={this.state.loggedIn}
               />
             )}
           />
@@ -85,6 +94,13 @@ class App extends Component {
       </div>
     );
   }
+  handleLogIn = logOutIn => {
+    let logger;
+    logOutIn === "out" ? (logger = false) : (logger = true);
+    this.setState({
+      loggedIn: logger
+    });
+  };
 }
 
 export default App;

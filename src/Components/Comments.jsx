@@ -40,30 +40,33 @@ class Comments extends Component {
             return (
               <div className="individual-comment-window" key={comment._id}>
                 <CommentBody comment={comment} username={this.props.username} />
-                {this.props.articleId && (
-                  <VoteCommentButtons
-                    comment={comment}
-                    handleVote={this.handleVote}
-                  />
-                )}
-                {comment.created_by.username === "tickle122" && (
-                  <DeleteButton
-                    deleteComment={this.deleteComment}
-                    comment={comment}
-                  />
-                )}
+                {this.props.articleId &&
+                  this.props.loggedIn && (
+                    <VoteCommentButtons
+                      comment={comment}
+                      handleVote={this.handleVote}
+                    />
+                  )}
+                {comment.created_by.username === "tickle122" &&
+                  this.props.loggedIn && (
+                    <DeleteButton
+                      deleteComment={this.deleteComment}
+                      comment={comment}
+                    />
+                  )}
               </div>
             );
           })}
-        {this.props.articleId && (
-          <div>
-            <p>Add A Comment</p>
-            <PostComment
-              articleid={this.props.articleId}
-              addComment={this.addComment}
-            />
-          </div>
-        )}
+        {this.props.articleId &&
+          this.props.loggedIn && (
+            <div>
+              <p>Add A Comment</p>
+              <PostComment
+                articleid={this.props.articleId}
+                addComment={this.addComment}
+              />
+            </div>
+          )}
       </div>
     );
   }
