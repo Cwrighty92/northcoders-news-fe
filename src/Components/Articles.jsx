@@ -1,60 +1,54 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import moment from "moment";
 import "./styles/Articles.css";
+import Heading from "./Heading";
+import Topics from "./Topics";
+import ArticleSortButtons from "./ArticleSortButtons";
+import ArticlesBody from "./ArticlesBody";
+import * as api from "../Api";
 class Articles extends Component {
+  state = {
+    articles: []
+  };
+  componentDidMount() {
+    api.fetchArticles().then(({ data }) => {
+      this.setState({ articles: data.articles });
+    });
+  }
   render() {
     let filteredArticles = [];
     if (this.props.topicId) {
-      filteredArticles = this.props.articles.filter(article => {
+      filteredArticles = this.state.articles.filter(article => {
         return article.belongs_to === this.props.topicId;
       });
     } else {
-      filteredArticles = [...this.props.articles];
+      filteredArticles = [...this.state.articles];
     }
-
     return (
-      // seperate this out
       <div className="article-window">
+        <Heading />
+        <Topics />
         <h3>Articles({filteredArticles.length})</h3>
-        <div className="sort-buttons">
-          <button
-            className="sort-button"
-            onClick={() => {
-              this.props.sortArticlesByVotes("pop");
-            }}
-          >
-            Top Articles
-          </button>
-          <button
-            className="sort-button"
-            onClick={() => {
-              this.props.sortArticlesByVotes("time");
-            }}
-          >
-            Most Recent
-          </button>
-        </div>
+        <ArticleSortButtons sortArticles={this.sortArticles} />
         {filteredArticles.map(article => {
-          //Seperate this out
-          return (
-            <div className="article-tabs" key={article._id}>
-              <div className="article-body">
-                <Link to={`/articles/${article._id}`}>
-                  <h3>{article.title}</h3>
-                </Link>
-                <br />
-                <p>Created By: {article.created_by.username}</p>
-                <p>{moment(article.created_at).format("llll")}</p>
-                <p>Votes: {article.votes}</p>
-                <p>Comments: {article.commentCount}</p>
-              </div>
-            </div>
-          );
+          return <ArticlesBody article={article} />;
         })}
       </div>
     );
   }
+  sortArticles = sortOption => {
+    let sortedArticles = [];
+    if (sortOption === "pop") {
+      sortedArticles = [...this.state.articles].sort((articleA, articleB) => {
+        return articleB.votes - articleA.votes;
+      });
+      this.setState({ articles: sortedArticles });
+    } else if (sortOption === "time") {
+      sortedArticles = [...this.state.articles].sort((articleA, articleB) => {
+        return articleB.created_at - articleA.created_at;
+      });
+      this.setState({ articles: sortedArticles });
+    }
+  };
 }
 
 export default Articles;

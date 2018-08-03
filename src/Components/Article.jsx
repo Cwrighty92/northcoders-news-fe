@@ -8,7 +8,6 @@ class Article extends Component {
   state = {
     article: {}
   };
-
   componentDidMount = async () => {
     try {
       const { data } = await api.fetchArticle(this.props.articleId);
@@ -17,7 +16,6 @@ class Article extends Component {
       });
     } catch (err) {}
   };
-
   render() {
     return (
       <div className="article-page">

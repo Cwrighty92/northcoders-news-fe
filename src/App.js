@@ -7,33 +7,25 @@ import Article from "./Components/Article";
 import Users from "./Components/Users";
 import User from "./Components/User";
 import TopNavBar from "./Components/TopNavBar";
-import Heading from "./Components/Heading";
-import Topics from "./Components/Topics";
+import LogIn from "./Components/LogIn";
 
 class App extends Component {
   state = {
-    articles: [],
     users: []
   };
-
   componentDidMount() {
-    return Promise.all([api.fetchArticles(), api.fetchUsers()]).then(
-      ([articles, users]) => {
-        this.setState({
-          articles: articles.data.articles,
-          users: users.data.users
-        });
-      }
-    );
+    api.fetchUsers().then(({ data }) => {
+      this.setState({ users: data.users });
+    });
   }
-
   render() {
     return (
       <div className="app-page">
         <TopNavBar />
-        <Heading />
-        <Topics />
 
+        <div className="pages">
+          <Route exact path="/" render={() => <LogIn />} />
+        </div>
         <div className="pages">
           <Route
             exact
@@ -94,20 +86,6 @@ class App extends Component {
       </div>
     );
   }
-  sortArticlesByVotes = sortOption => {
-    let sortedArticles = [];
-    if (sortOption === "pop") {
-      sortedArticles = [...this.state.articles].sort((articleA, articleB) => {
-        return articleB.votes - articleA.votes;
-      });
-      this.setState({ articles: sortedArticles });
-    } else if (sortOption === "time") {
-      sortedArticles = [...this.state.articles].sort((articleA, articleB) => {
-        return articleB.created_at - articleA.created_at;
-      });
-      this.setState({ articles: sortedArticles });
-    }
-  };
 }
 
 export default App;
