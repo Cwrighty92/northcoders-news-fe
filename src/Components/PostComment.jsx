@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import "./styles/Comments.css";
 class PostComment extends Component {
   state = {
     commentBody: ""

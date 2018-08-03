@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import "./App.css";
-import * as api from "./Api";
 import Articles from "./Components/Articles";
 import Article from "./Components/Article";
 import Users from "./Components/Users";
@@ -11,14 +10,9 @@ import LogIn from "./Components/LogIn";
 
 class App extends Component {
   state = {
-    users: [],
-    loggedIn: false
+    currentUser: null
   };
-  componentDidMount() {
-    api.fetchUsers().then(({ data }) => {
-      this.setState({ users: data.users });
-    });
-  }
+  componentDidMount() {}
   render() {
     return (
       <div className="app-page">
@@ -30,7 +24,12 @@ class App extends Component {
           <Route
             exact
             path="/"
-            render={() => <LogIn handleLogIn={this.handleLogIn} />}
+            render={() => (
+              <LogIn
+                handleLogIn={this.handleLogIn}
+                loggedIn={this.state.loggedIn}
+              />
+            )}
           />
         </div>
         <div className="pages">
@@ -41,6 +40,7 @@ class App extends Component {
               <Articles
                 articles={this.state.articles}
                 sortArticlesByVotes={this.sortArticlesByVotes}
+                loggedIn={this.state.loggedIn}
               />
             )}
           />
@@ -54,6 +54,7 @@ class App extends Component {
                 articles={this.state.articles}
                 topicId={props.match.params.topicid}
                 sortArticlesByVotes={this.sortArticlesByVotes}
+                loggedIn={this.state.loggedIn}
               />
             )}
           />
@@ -75,7 +76,9 @@ class App extends Component {
           <Route
             exact
             path="/users"
-            render={props => <Users users={this.state.users} />}
+            render={props => (
+              <Users users={this.state.users} loggedIn={this.state.loggedIn} />
+            )}
           />
         </div>
         <div className="pages">
@@ -87,6 +90,7 @@ class App extends Component {
                 username={props.match.params.username}
                 comments={this.state.comments}
                 articles={this.state.articles}
+                loggedIn={this.state.loggedIn}
               />
             )}
           />
@@ -96,7 +100,7 @@ class App extends Component {
   }
   handleLogIn = logOutIn => {
     let logger;
-    logOutIn === "out" ? (logger = false) : (logger = true);
+    logOutIn === "out" ? (logger = null) : (logger = true);
     this.setState({
       loggedIn: logger
     });

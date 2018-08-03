@@ -19,9 +19,13 @@ class Articles extends Component {
 
     return (
       <div className="article-window">
-        <Heading />
-        <Topics />
-        <h3>Articles({filteredArticles.length})</h3>
+        {!this.props.username && (
+          <div>
+            <Heading />
+            <Topics />
+            <h3>Articles({filteredArticles.length})</h3>
+          </div>
+        )}
         <ArticleSortButtons sortArticles={this.sortArticles} />
         {filteredArticles.map(article => {
           return <ArticlesBody article={article} key={article._id} />;

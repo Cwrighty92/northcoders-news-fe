@@ -6,3 +6,8 @@
   display: flex;
   justify-content: center;
 }
+
+.post-comment-box {
+  width: 310px;
+  height: 100px;
+}
