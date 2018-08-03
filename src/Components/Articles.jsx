@@ -20,6 +20,10 @@ class Articles extends Component {
       filteredArticles = this.state.articles.filter(article => {
         return article.belongs_to === this.props.topicId;
       });
+    } else if (this.props.username) {
+      filteredArticles = this.state.articles.filter(article => {
+        return article.created_by.username === this.props.username;
+      });
     } else {
       filteredArticles = [...this.state.articles];
     }
@@ -30,7 +34,7 @@ class Articles extends Component {
         <h3>Articles({filteredArticles.length})</h3>
         <ArticleSortButtons sortArticles={this.sortArticles} />
         {filteredArticles.map(article => {
-          return <ArticlesBody article={article} />;
+          return <ArticlesBody article={article} key={article._id} />;
         })}
       </div>
     );

@@ -22,7 +22,6 @@ class App extends Component {
     return (
       <div className="app-page">
         <TopNavBar />
-
         <div className="pages">
           <Route exact path="/" render={() => <LogIn />} />
         </div>

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./styles/User.css";
 import * as api from "../Api";
 import Comments from "./Comments";
+import Articles from "./Articles";
 class User extends Component {
   state = {
     user: {}
@@ -26,7 +27,9 @@ class User extends Component {
             alt="user avatar"
           />
         </div>
-
+        <div className="user-articles">
+          <Articles username={this.props.username} />
+        </div>
         <div className="user-comments">
           <Comments username={this.props.username} />
         </div>
