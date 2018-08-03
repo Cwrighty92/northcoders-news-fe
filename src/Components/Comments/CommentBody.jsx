@@ -2,7 +2,7 @@ import React from "react";
 import "./Comments.css";
 import moment from "moment";
 import { Link } from "react-router-dom";
-
+import PropTypes from "prop-types";
 const CommentBody = props => {
   return (
     <div>
@@ -21,6 +21,11 @@ const CommentBody = props => {
       <p>Votes: {props.comment.votes}</p>
     </div>
   );
+};
+
+CommentBody.propTypes = {
+  comment: PropTypes.object.isRequired,
+  username: PropTypes.string
 };
 
 export default CommentBody;

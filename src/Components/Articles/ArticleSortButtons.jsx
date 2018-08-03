@@ -1,5 +1,6 @@
 import React from "react";
 import "./Articles.css";
+import PropTypes from "prop-types";
 const ArticleSortButtons = props => {
   return (
     <div className="sort-buttons">
@@ -21,6 +22,10 @@ const ArticleSortButtons = props => {
       </button>
     </div>
   );
+};
+
+ArticleSortButtons.propTypes = {
+  sortArticles: PropTypes.func.isRequired
 };
 
 export default ArticleSortButtons;

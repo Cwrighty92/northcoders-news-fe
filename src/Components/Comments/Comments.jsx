@@ -6,6 +6,7 @@ import PostComment from "./PostComment";
 import CommentBody from "./CommentBody";
 import SortCommentButtons from "./SortCommentButtons";
 import DeleteButton from "./DeleteButton";
+import PropTypes from "prop-types";
 
 class Comments extends Component {
   state = {
@@ -134,5 +135,10 @@ class Comments extends Component {
     });
   };
 }
+
+Comments.propTypes = {
+  articleId: PropTypes.string,
+  loggedIn: PropTypes.bool
+};
 
 export default Comments;

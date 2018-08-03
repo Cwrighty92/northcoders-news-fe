@@ -1,6 +1,6 @@
 import React from "react";
 import "./Comments.css";
-
+import PropTypes from "prop-types";
 const VoteCommentButtons = props => {
   return (
     <div>
@@ -20,6 +20,10 @@ const VoteCommentButtons = props => {
       </button>
     </div>
   );
+};
+VoteCommentButtons.propTypes = {
+  comment: PropTypes.object.isRequired,
+  handleVote: PropTypes.func.isRequired
 };
 
 export default VoteCommentButtons;

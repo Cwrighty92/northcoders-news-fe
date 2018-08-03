@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Comments.css";
+import PropTypes from "prop-types";
 class PostComment extends Component {
   state = {
     commentBody: ""
@@ -30,4 +31,9 @@ class PostComment extends Component {
     this.setState({ commentBody: event.target.value });
   };
 }
+
+PostComment.propTypes = {
+  articleid: PropTypes.string.isRequired,
+  addComment: PropTypes.func.isRequired
+};
 export default PostComment;

@@ -91,6 +91,7 @@ class App extends Component {
   handleLogIn = logOutIn => {
     let logger;
     logOutIn === "out" ? (logger = null) : (logger = true);
+
     this.setState({
       loggedIn: logger
     });

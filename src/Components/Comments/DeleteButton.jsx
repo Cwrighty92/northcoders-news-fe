@@ -1,6 +1,6 @@
 import React from "react";
 import "./Comments.css";
-
+import PropTypes from "prop-types";
 const DeleteButton = props => {
   return (
     <div>
@@ -14,5 +14,8 @@ const DeleteButton = props => {
     </div>
   );
 };
-
+DeleteButton.propTypes = {
+  deleteComment: PropTypes.func.isRequired,
+  comment: PropTypes.object.isRequired
+};
 export default DeleteButton;

@@ -1,6 +1,6 @@
 import React from "react";
 import "./Comments.css";
-
+import PropTypes from "prop-types";
 const SortCommentButtons = props => {
   return (
     <div className="sort-buttons">
@@ -24,4 +24,7 @@ const SortCommentButtons = props => {
   );
 };
 
+SortCommentButtons.propTypes = {
+  sortComments: PropTypes.func.isRequired
+};
 export default SortCommentButtons;

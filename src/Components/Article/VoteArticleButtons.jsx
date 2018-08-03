@@ -1,6 +1,6 @@
 import React from "react";
 import "./Article.css";
-
+import PropTypes from "prop-types";
 const VoteArticleButtons = props => {
   return (
     <div>
@@ -20,6 +20,10 @@ const VoteArticleButtons = props => {
       </button>
     </div>
   );
+};
+
+VoteArticleButtons.propTypes = {
+  handleVote: PropTypes.func.isRequired
 };
 
 export default VoteArticleButtons;

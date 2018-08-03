@@ -2,10 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import "./Articles.css";
+import PropTypes from "prop-types";
 
 const ArticlesBody = props => {
   return (
-    <div className="article-tabs" >
+    <div className="article-tabs">
       <div className="article-body">
         <Link to={`/articles/${props.article._id}`}>
           <h3>{props.article.title}</h3>
@@ -18,6 +19,10 @@ const ArticlesBody = props => {
       </div>
     </div>
   );
+};
+
+ArticlesBody.propTypes = {
+  article: PropTypes.object.isRequired
 };
 
 export default ArticlesBody;

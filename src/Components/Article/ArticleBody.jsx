@@ -1,6 +1,7 @@
 import React from "react";
 import "./Article.css";
 import VoteArticleButtons from "./VoteArticleButtons";
+import PropTypes from "prop-types";
 
 const ArticleBody = props => {
   return (
@@ -14,6 +15,11 @@ const ArticleBody = props => {
       {props.loggedIn && <VoteArticleButtons handleVote={props.handleVote} />}
     </div>
   );
+};
+
+ArticleBody.propTypes = {
+  articleId: PropTypes.string,
+  loggedIn: PropTypes.bool
 };
 
 export default ArticleBody;
