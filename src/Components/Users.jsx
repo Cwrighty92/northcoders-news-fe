@@ -6,7 +6,7 @@ class Users extends Component {
     return (
       <div>
         {this.props.users.map(user => {
-          return <UsersBody user={user} />;
+          return <UsersBody user={user} key={user._id} />;
         })}
       </div>
     );

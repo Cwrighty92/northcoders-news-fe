@@ -15,18 +15,8 @@ class Articles extends Component {
     });
   }
   render() {
-    let filteredArticles = [];
-    if (this.props.topicId) {
-      filteredArticles = this.state.articles.filter(article => {
-        return article.belongs_to === this.props.topicId;
-      });
-    } else if (this.props.username) {
-      filteredArticles = this.state.articles.filter(article => {
-        return article.created_by.username === this.props.username;
-      });
-    } else {
-      filteredArticles = [...this.state.articles];
-    }
+    let filteredArticles = this.filterArticles();
+
     return (
       <div className="article-window">
         <Heading />
@@ -52,6 +42,21 @@ class Articles extends Component {
       });
       this.setState({ articles: sortedArticles });
     }
+  };
+  filterArticles = () => {
+    let filteredArticles = [];
+    if (this.props.topicId) {
+      filteredArticles = this.state.articles.filter(article => {
+        return article.belongs_to === this.props.topicId;
+      });
+    } else if (this.props.username) {
+      filteredArticles = this.state.articles.filter(article => {
+        return article.created_by.username === this.props.username;
+      });
+    } else {
+      filteredArticles = [...this.state.articles];
+    }
+    return filteredArticles;
   };
 }
 

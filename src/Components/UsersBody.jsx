@@ -4,7 +4,7 @@ import "./styles/Users.css";
 
 const UsersBody = props => {
   return (
-    <div className="user-tabs" key={props.user._id}>
+    <div className="user-tabs" >
       <div className="user-body" />
       <Link to={`/users/${props.user.username}`}>
         <p>
