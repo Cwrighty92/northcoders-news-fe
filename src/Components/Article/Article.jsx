@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import "./styles/Article.css";
-import * as api from "../Api";
+import "./Article.css";
+import * as api from "../../Api";
 import ArticleBody from "./ArticleBody";
-import Comments from "./Comments";
+import Comments from "../Comments/Comments";
 
 class Article extends Component {
   state = {

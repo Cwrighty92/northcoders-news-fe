@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "./styles/Comments.css";
-import * as api from "../Api";
+import "./Comments.css";
+import * as api from "../../Api";
 import VoteCommentButtons from "./VoteCommentButtons";
 import PostComment from "./PostComment";
 import CommentBody from "./CommentBody";

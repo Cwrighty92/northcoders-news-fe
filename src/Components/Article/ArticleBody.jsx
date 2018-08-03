@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles/Article.css";
+import "./Article.css";
 import VoteArticleButtons from "./VoteArticleButtons";
 
 const ArticleBody = props => {

@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles/Comments.css";
+import "./Comments.css";
 
 const DeleteButton = props => {
   return (

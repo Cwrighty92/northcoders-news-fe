@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import "./App.css";
-import Articles from "./Components/Articles";
-import Article from "./Components/Article";
-import Users from "./Components/Users";
-import User from "./Components/User";
+import Articles from "./Components/Articles/Articles";
+import Article from "./Components/Article/Article";
+import Users from "./Components/Users/Users";
+import User from "./Components/User/User";
 import TopNavBar from "./Components/TopNavBar";
-import LogIn from "./Components/LogIn";
+import LogIn from "./Components/Login/LogIn";
 
 class App extends Component {
   state = {
@@ -31,8 +31,6 @@ class App extends Component {
               />
             )}
           />
-        </div>
-        <div className="pages">
           <Route
             exact
             path="/articles"
@@ -44,8 +42,6 @@ class App extends Component {
               />
             )}
           />
-        </div>
-        <div className="pages">
           <Route
             exact
             path="/topics/:topicid"
@@ -58,8 +54,6 @@ class App extends Component {
               />
             )}
           />
-        </div>
-        <div className="pages">
           <Route
             exact
             path="/articles/:articleid"
@@ -71,8 +65,6 @@ class App extends Component {
               />
             )}
           />
-        </div>
-        <div className="pages">
           <Route
             exact
             path="/users"
@@ -80,8 +72,6 @@ class App extends Component {
               <Users users={this.state.users} loggedIn={this.state.loggedIn} />
             )}
           />
-        </div>
-        <div className="pages">
           <Route
             exact
             path="/users/:username"

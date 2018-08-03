@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import "./styles/User.css";
-import * as api from "../Api";
-import Comments from "./Comments";
-import Articles from "./Articles";
+import "./User.css";
+import * as api from "../../Api";
+import Comments from "../Comments/Comments";
+import Articles from "../Articles/Articles";
+import UserBody from "./UserBody";
 class User extends Component {
   state = {
     user: {}
@@ -19,14 +20,7 @@ class User extends Component {
   render() {
     return (
       <div className="user-page">
-        <div className="user-pane">
-          <p>{this.state.user.username}</p>
-          <img
-            className="user-profile-pic"
-            src={this.state.user.avatar_url}
-            alt="user avatar"
-          />
-        </div>
+        <UserBody user={this.state.user} />
         <div className="user-articles">
           <Articles username={this.props.username} />
         </div>

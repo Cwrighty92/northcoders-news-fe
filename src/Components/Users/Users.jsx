@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import "./styles/Users.css";
+import "./Users.css";
 import UsersBody from "./UsersBody";
-import * as api from "../Api";
+import * as api from "../../Api";
 class Users extends Component {
   state = {
     users: []
@@ -15,6 +15,9 @@ class Users extends Component {
   render() {
     return (
       <div>
+        <header>
+          <h1>Our Members</h1>
+        </header>
         {this.state.users.map(user => {
           return <UsersBody user={user} key={user._id} />;
         })}

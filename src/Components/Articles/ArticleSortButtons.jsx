@@ -1,21 +1,20 @@
 import React from "react";
-import "./styles/Comments.css";
-
-const SortCommentButtons = props => {
+import "./Articles.css";
+const ArticleSortButtons = props => {
   return (
     <div className="sort-buttons">
       <button
         className="sort-button"
         onClick={() => {
-          props.sortComments("pop");
+          props.sortArticles("pop");
         }}
       >
-        Popular Comments
+        Top Articles
       </button>
       <button
         className="sort-button"
         onClick={() => {
-          props.sortComments("time");
+          props.sortArticles("time");
         }}
       >
         Most Recent
@@ -24,4 +23,4 @@ const SortCommentButtons = props => {
   );
 };
 
-export default SortCommentButtons;
+export default ArticleSortButtons;

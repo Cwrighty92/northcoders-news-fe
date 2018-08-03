@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles/Comments.css";
+import "./Comments.css";
 import moment from "moment";
 import { Link } from "react-router-dom";
 

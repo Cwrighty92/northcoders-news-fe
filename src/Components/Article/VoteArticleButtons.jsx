@@ -1,19 +1,19 @@
 import React from "react";
-import "./styles/Comments.css";
+import "./Article.css";
 
-const VoteCommentButtons = props => {
+const VoteArticleButtons = props => {
   return (
     <div>
       <button
         onClick={() => {
-          props.handleVote(props.comment, "up");
+          props.handleVote("up");
         }}
       >
         Vote Up
       </button>
       <button
         onClick={() => {
-          props.handleVote(props.comment, "down");
+          props.handleVote("down");
         }}
       >
         Vote Down
@@ -22,4 +22,4 @@ const VoteCommentButtons = props => {
   );
 };
 
-export default VoteCommentButtons;
+export default VoteArticleButtons;

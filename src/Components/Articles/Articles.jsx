@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import "./styles/Articles.css";
-import Heading from "./Heading";
-import Topics from "./Topics";
+import "./Articles.css";
+import Heading from "../Heading";
+import Topics from "../Topics";
 import ArticleSortButtons from "./ArticleSortButtons";
 import ArticlesBody from "./ArticlesBody";
-import * as api from "../Api";
+import * as api from "../../Api";
 class Articles extends Component {
   state = {
     articles: []
