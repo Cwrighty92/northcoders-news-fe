@@ -15,12 +15,16 @@ class Users extends Component {
   render() {
     return (
       <div>
-        <header>
-          <h1>Our Members</h1>
-        </header>
-        {this.state.users.map(user => {
-          return <UsersBody user={user} key={user._id} />;
-        })}
+        <div className="users-page">
+          <header>
+            <h1 className="user-title">Our Members</h1>
+          </header>
+        </div>
+        <div className="users-section">
+          {this.state.users.map(user => {
+            return <UsersBody user={user} key={user._id} />;
+          })}
+        </div>
       </div>
     );
   }

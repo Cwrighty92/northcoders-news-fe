@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+
 .App {
   text-align: center;
 }
@@ -14,11 +16,25 @@ header {
   text-decoration: none;
   display: flex;
   justify-content: center;
+  background-color: black;
+  font-size: 22px;
+}
+.nav-item-top {
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  padding: 5px;
+}
+.nav-item-top:hover {
+  text-decoration: none;
+  color: gold;
+  margin: 5px;
 }
 .nav-item {
   text-decoration: none;
   color: black;
   margin: 5px;
+  padding: 0px 5px;
 }
 .nav-item:hover {
   text-decoration: none;
@@ -33,5 +49,11 @@ header {
 .pages {
   display: flex;
   justify-content: center;
-  width: 100vw;
+  background-color: white;
+  width: auto;
+}
+
+.NC-title {
+  font-family: "Open Sans", sans-serif;
+  font-size: 60px;
 }

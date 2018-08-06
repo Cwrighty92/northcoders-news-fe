@@ -8,6 +8,7 @@ const VoteArticleButtons = props => {
         onClick={() => {
           props.handleVote("up");
         }}
+        className="vote-up-button"
       >
         Vote Up
       </button>
@@ -15,6 +16,7 @@ const VoteArticleButtons = props => {
         onClick={() => {
           props.handleVote("down");
         }}
+        className="vote-down-button"
       >
         Vote Down
       </button>

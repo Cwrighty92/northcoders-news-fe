@@ -34,22 +34,14 @@ class App extends Component {
           <Route
             exact
             path="/articles"
-            render={() => (
-              <Articles
-                articles={this.state.articles}
-                sortArticlesByVotes={this.sortArticlesByVotes}
-                loggedIn={this.state.loggedIn}
-              />
-            )}
+            render={() => <Articles loggedIn={this.state.loggedIn} />}
           />
           <Route
             exact
             path="/topics/:topicid"
             render={props => (
               <Articles
-                articles={this.state.articles}
                 topicId={props.match.params.topicid}
-                sortArticlesByVotes={this.sortArticlesByVotes}
                 loggedIn={this.state.loggedIn}
               />
             )}
@@ -60,7 +52,6 @@ class App extends Component {
             render={props => (
               <Article
                 articleId={props.match.params.articleid}
-                addComment={this.addComment}
                 loggedIn={this.state.loggedIn}
               />
             )}
@@ -78,8 +69,6 @@ class App extends Component {
             render={props => (
               <User
                 username={props.match.params.username}
-                comments={this.state.comments}
-                articles={this.state.articles}
                 loggedIn={this.state.loggedIn}
               />
             )}

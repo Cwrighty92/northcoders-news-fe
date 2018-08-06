@@ -6,10 +6,10 @@ const TopNavBar = props => {
     <nav className="nav-bar-header">
       {props.loggedIn && (
         <nav>
-          <NavLink to={"/articles"} className="nav-item">
+          <NavLink to={"/articles"} className="nav-item-top">
             Articles
           </NavLink>
-          <NavLink to={"/users"} className="nav-item">
+          <NavLink to={"/users"} className="nav-item-top">
             Members
           </NavLink>
           <NavLink
@@ -17,14 +17,14 @@ const TopNavBar = props => {
             onClick={() => {
               props.handleLogIn("out");
             }}
-            className="nav-item"
+            className="nav-item-top"
           >
             Log Out
           </NavLink>
         </nav>
       )}
       {!props.loggedIn && (
-        <NavLink to={"/"} className="nav-item">
+        <NavLink to={"/"} className="nav-item-top">
           Log In
         </NavLink>
       )}

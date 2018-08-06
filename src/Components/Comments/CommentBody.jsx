@@ -7,12 +7,18 @@ const CommentBody = props => {
   return (
     <div>
       {!props.username && (
-        <Link to={`/users/${props.comment.created_by.username}`}>
+        <Link
+          to={`/users/${props.comment.created_by.username}`}
+          className="comment-link"
+        >
           <p>Posted By: {props.comment.created_by.username}</p>
         </Link>
       )}
       {props.username && (
-        <Link to={`/articles/${props.comment.belongs_to._id}`}>
+        <Link
+          to={`/articles/${props.comment.belongs_to._id}`}
+          className="comment-link"
+        >
           Belongs To: {props.comment.belongs_to.title}
         </Link>
       )}

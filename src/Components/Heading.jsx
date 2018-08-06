@@ -3,7 +3,7 @@ import "../App.css";
 const Heading = () => {
   return (
     <header>
-      <h1>NorthCoders News</h1>
+      <h1 className="NC-title">NorthCoders News</h1>
     </header>
   );
 };

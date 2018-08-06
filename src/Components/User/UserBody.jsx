@@ -3,12 +3,14 @@ import "./User.css";
 const UserBody = props => {
   return (
     <div className="user-pane">
-      <p>{props.user.username}</p>
-      <img
-        className="user-profile-pic"
-        src={props.user.avatar_url}
-        alt="user avatar"
-      />
+      <div className="user-tabs">
+        <h1 className="username-title">{props.user.username}</h1>
+        <img
+          className="user-profile-pic"
+          src={props.user.avatar_url}
+          alt="user avatar"
+        />
+      </div>
     </div>
   );
 };

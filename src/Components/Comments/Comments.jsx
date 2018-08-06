@@ -35,7 +35,7 @@ class Comments extends Component {
     return (
       <div className="comments section">
         <SortCommentButtons sortComments={this.sortComments} />
-        <h1>Comments ({this.state.comments.length})</h1>
+
         {this.state.comments &&
           this.state.comments.map(comment => {
             return (

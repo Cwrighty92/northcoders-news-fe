@@ -3,7 +3,7 @@ import "./Comments.css";
 import PropTypes from "prop-types";
 const SortCommentButtons = props => {
   return (
-    <div className="sort-buttons">
+    <div className="sort-buttons-comments">
       <button
         className="sort-button"
         onClick={() => {

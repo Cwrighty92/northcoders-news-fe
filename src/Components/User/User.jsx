@@ -24,7 +24,7 @@ class User extends Component {
         <div className="user-articles">
           <Articles username={this.props.username} />
         </div>
-        <div className="user-comments">
+        <div className="comment-pane">
           <Comments username={this.props.username} />
         </div>
       </div>

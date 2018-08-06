@@ -8,7 +8,7 @@ const ArticlesBody = props => {
   return (
     <div className="article-tabs">
       <div className="article-body">
-        <Link to={`/articles/${props.article._id}`}>
+        <Link to={`/articles/${props.article._id}`} className="article-title">
           <h3>{props.article.title}</h3>
         </Link>
         <br />

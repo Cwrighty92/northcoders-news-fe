@@ -4,19 +4,19 @@ import "./Users.css";
 
 const UsersBody = props => {
   return (
-    <div className="user-tabs" >
-      <div className="user-body" />
-      <Link to={`/users/${props.user.username}`}>
-        <p>
-          {props.user.username} - {props.user.name}
-        </p>
-      </Link>
-      <img
-        className="user-profile-pic"
-        alt="users avatar"
-        src={props.user.avatar_url}
-      />
-    </div>
+    <Link to={`/users/${props.user.username}`} className="user-link">
+      <div className="user-tabs">
+        <div className="user-body" />
+
+        <h2 className="user-name-header">{props.user.username}</h2>
+
+        <img
+          className="user-profile-pic"
+          alt="users avatar"
+          src={props.user.avatar_url}
+        />
+      </div>
+    </Link>
   );
 };
 
