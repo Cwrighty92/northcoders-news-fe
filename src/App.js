@@ -32,6 +32,7 @@ class App extends Component {
     }
   }
   render() {
+    const { Provider } = React.createContext();
     return (
       <div className="app-page">
         <TopNavBar
@@ -39,61 +40,63 @@ class App extends Component {
           handleLogIn={this.handleLogIn}
         />
         <div className="pages">
-          <Route
-            exact
-            path="/"
-            render={() => (
-              <LogIn
-                handleLogIn={this.handleLogIn}
-                currentUser={this.state.currentUser}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/articles"
-            render={() => <Articles currentUser={this.state.currentUser} />}
-          />
-          <Route
-            exact
-            path="/topics/:topicid"
-            render={props => (
-              <Articles
-                topicId={props.match.params.topicid}
-                currentUser={this.state.currentUser}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/articles/:articleid"
-            render={props => (
-              <Article
-                articleId={props.match.params.articleid}
-                currentUser={this.state.currentUser}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/users"
-            render={props => (
-              <Users
-                users={this.state.users}
-                currentUser={this.state.currentUser}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/users/:username"
-            render={props => (
-              <User
-                username={props.match.params.username}
-                currentUser={this.state.currentUser}
-              />
-            )}
-          />
+          <Provider value={this.state.currentUser}>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <LogIn
+                  handleLogIn={this.handleLogIn}
+                  currentUser={this.state.currentUser}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/articles"
+              render={() => <Articles currentUser={this.state.currentUser} />}
+            />
+            <Route
+              exact
+              path="/topics/:topicid"
+              render={props => (
+                <Articles
+                  topicId={props.match.params.topicid}
+                  currentUser={this.state.currentUser}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/articles/:articleid"
+              render={props => (
+                <Article
+                  articleId={props.match.params.articleid}
+                  currentUser={this.state.currentUser}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/users"
+              render={props => (
+                <Users
+                  users={this.state.users}
+                  currentUser={this.state.currentUser}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/users/:username"
+              render={props => (
+                <User
+                  username={props.match.params.username}
+                  currentUser={this.state.currentUser}
+                />
+              )}
+            />
+          </Provider>
         </div>
       </div>
     );
