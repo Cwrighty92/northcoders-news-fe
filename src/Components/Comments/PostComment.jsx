@@ -8,6 +8,7 @@ class PostComment extends Component {
   render() {
     return (
       <div>
+        <p>Add A Comment</p>
         <div>
           <textarea
             className="post-comment-box"

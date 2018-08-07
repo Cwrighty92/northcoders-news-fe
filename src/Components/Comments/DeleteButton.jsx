@@ -8,6 +8,7 @@ const DeleteButton = props => {
         onClick={() => {
           props.deleteComment(props.comment);
         }}
+        className="vote-down-button"
       >
         Delete
       </button>

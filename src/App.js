@@ -7,17 +7,35 @@ import Users from "./Components/Users/Users";
 import User from "./Components/User/User";
 import TopNavBar from "./Components/TopNavBar";
 import LogIn from "./Components/Login/LogIn";
+import * as api from "./Api";
 
 class App extends Component {
   state = {
     currentUser: null
   };
-  componentDidMount() {}
+  componentDidUpdate(prevprops, prevState) {
+    if (this.state.currentUser !== prevState.currentUser) {
+      if (this.state.currentUser) {
+        sessionStorage.setItem(
+          "currentUser",
+          JSON.stringify(this.state.currentUser)
+        );
+      } else {
+        sessionStorage.removeItem("currentUser");
+      }
+    }
+  }
+  componentDidMount() {
+    const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+    if (currentUser) {
+      this.setState({ currentUser });
+    }
+  }
   render() {
     return (
       <div className="app-page">
         <TopNavBar
-          loggedIn={this.state.loggedIn}
+          currentUser={this.state.currentUser}
           handleLogIn={this.handleLogIn}
         />
         <div className="pages">
@@ -27,14 +45,14 @@ class App extends Component {
             render={() => (
               <LogIn
                 handleLogIn={this.handleLogIn}
-                loggedIn={this.state.loggedIn}
+                currentUser={this.state.currentUser}
               />
             )}
           />
           <Route
             exact
             path="/articles"
-            render={() => <Articles loggedIn={this.state.loggedIn} />}
+            render={() => <Articles currentUser={this.state.currentUser} />}
           />
           <Route
             exact
@@ -42,7 +60,7 @@ class App extends Component {
             render={props => (
               <Articles
                 topicId={props.match.params.topicid}
-                loggedIn={this.state.loggedIn}
+                currentUser={this.state.currentUser}
               />
             )}
           />
@@ -52,7 +70,7 @@ class App extends Component {
             render={props => (
               <Article
                 articleId={props.match.params.articleid}
-                loggedIn={this.state.loggedIn}
+                currentUser={this.state.currentUser}
               />
             )}
           />
@@ -60,7 +78,10 @@ class App extends Component {
             exact
             path="/users"
             render={props => (
-              <Users users={this.state.users} loggedIn={this.state.loggedIn} />
+              <Users
+                users={this.state.users}
+                currentUser={this.state.currentUser}
+              />
             )}
           />
           <Route
@@ -69,7 +90,7 @@ class App extends Component {
             render={props => (
               <User
                 username={props.match.params.username}
-                loggedIn={this.state.loggedIn}
+                currentUser={this.state.currentUser}
               />
             )}
           />
@@ -78,12 +99,14 @@ class App extends Component {
     );
   }
   handleLogIn = logOutIn => {
-    let logger;
-    logOutIn === "out" ? (logger = null) : (logger = true);
-
-    this.setState({
-      loggedIn: logger
-    });
+    if (logOutIn === "in") {
+      api.fetchUser("tickle122").then(({ data }) => {
+        this.setState({ currentUser: data.user });
+      });
+    } else if (logOutIn === "out") {
+      sessionStorage.user = null;
+      this.setState({ currentUser: null });
+    }
   };
 }
 

@@ -4,7 +4,7 @@ import "../App.css";
 const TopNavBar = props => {
   return (
     <nav className="nav-bar-header">
-      {props.loggedIn && (
+      {props.currentUser && (
         <nav>
           <NavLink to={"/articles"} className="nav-item-top">
             Articles
@@ -23,7 +23,7 @@ const TopNavBar = props => {
           </NavLink>
         </nav>
       )}
-      {!props.loggedIn && (
+      {!props.currentUser && (
         <NavLink to={"/"} className="nav-item-top">
           Log In
         </NavLink>

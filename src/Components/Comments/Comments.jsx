@@ -35,21 +35,20 @@ class Comments extends Component {
     return (
       <div className="comments section">
         <SortCommentButtons sortComments={this.sortComments} />
-
         {this.state.comments &&
           this.state.comments.map(comment => {
             return (
               <div className="individual-comment-window" key={comment._id}>
                 <CommentBody comment={comment} username={this.props.username} />
                 {this.props.articleId &&
-                  this.props.loggedIn && (
+                  this.props.currentUser && (
                     <VoteCommentButtons
                       comment={comment}
                       handleVote={this.handleVote}
                     />
                   )}
                 {comment.created_by.username === "tickle122" &&
-                  this.props.loggedIn && (
+                  this.props.currentUser && (
                     <DeleteButton
                       deleteComment={this.deleteComment}
                       comment={comment}
@@ -59,14 +58,11 @@ class Comments extends Component {
             );
           })}
         {this.props.articleId &&
-          this.props.loggedIn && (
-            <div>
-              <p>Add A Comment</p>
-              <PostComment
-                articleid={this.props.articleId}
-                addComment={this.addComment}
-              />
-            </div>
+          this.props.currentUser && (
+            <PostComment
+              articleid={this.props.articleId}
+              addComment={this.addComment}
+            />
           )}
       </div>
     );
@@ -138,7 +134,7 @@ class Comments extends Component {
 
 Comments.propTypes = {
   articleId: PropTypes.string,
-  loggedIn: PropTypes.bool
+  currentUser: PropTypes.object
 };
 
 export default Comments;

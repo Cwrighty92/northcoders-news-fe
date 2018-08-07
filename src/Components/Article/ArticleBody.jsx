@@ -14,7 +14,9 @@ const ArticleBody = props => {
         </p>
         <p>{props.article.body}</p>
         <p>Votes: {props.article.votes}</p>
-        {props.loggedIn && <VoteArticleButtons handleVote={props.handleVote} />}
+        {props.currentUser && (
+          <VoteArticleButtons handleVote={props.handleVote} />
+        )}
       </div>
     </div>
   );
@@ -22,7 +24,7 @@ const ArticleBody = props => {
 
 ArticleBody.propTypes = {
   articleId: PropTypes.string,
-  loggedIn: PropTypes.bool
+  currentUser: PropTypes.object
 };
 
 export default ArticleBody;

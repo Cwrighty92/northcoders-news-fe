@@ -22,12 +22,12 @@ class Article extends Component {
         <ArticleBody
           article={this.state.article}
           handleVote={this.handleVote}
-          loggedIn={this.props.loggedIn}
+          currentUser={this.props.currentUser}
         />
         <div className="comment-pane">
           <Comments
             articleId={this.props.articleId}
-            loggedIn={this.props.loggedIn}
+            currentUser={this.props.currentUser}
           />
         </div>
       </div>
