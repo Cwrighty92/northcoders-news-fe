@@ -48,7 +48,8 @@ const SortButtons = props => {
 };
 
 SortButtons.propTypes = {
-  sortArticles: PropTypes.func.isRequired
+  sortArticles: PropTypes.func,
+  sortComments: PropTypes.func
 };
 
 export default SortButtons;
