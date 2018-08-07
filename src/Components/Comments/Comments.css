@@ -19,24 +19,24 @@
 .vote-up-button {
   background-color: #4caf50;
   border-radius: 8px;
-  width: 70px;
+  width: 80px;
   color: white;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 10px;
+  font-size: 12px;
   margin: 4px 2px;
   cursor: pointer;
 }
 .vote-down-button {
   background-color: red;
   border-radius: 8px;
-  width: 70px;
+  width: 80px;
   color: white;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 10px;
+  font-size: 12px;
   margin: 4px 2px;
   cursor: pointer;
 }

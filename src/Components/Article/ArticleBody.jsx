@@ -1,6 +1,6 @@
 import React from "react";
 import "./Article.css";
-import VoteArticleButtons from "./VoteArticleButtons";
+import VoteButtons from "../Article/VoteButtons";
 import PropTypes from "prop-types";
 
 const ArticleBody = props => {
@@ -15,7 +15,7 @@ const ArticleBody = props => {
         <p>{props.article.body}</p>
         <p>Votes: {props.article.votes}</p>
         {props.currentUser && (
-          <VoteArticleButtons handleVote={props.handleVote} />
+          <VoteButtons handleVote={props.handleVote} article={props.article} />
         )}
       </div>
     </div>

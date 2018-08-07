@@ -28,20 +28,40 @@ class Article extends Component {
           <Comments
             articleId={this.props.articleId}
             currentUser={this.props.currentUser}
+            handleVote={this.handleVote}
           />
         </div>
       </div>
     );
   }
-  handleVote = voteOption => {
-    let voteNum = 0;
-    voteOption === "up" ? (voteNum = 1) : (voteNum = -1);
-    let votedArticle = { ...this.state.article };
-    votedArticle.votes = votedArticle.votes + voteNum;
-    this.setState({
-      article: votedArticle
-    });
-    api.voteOnArticle(this.state.article._id, voteOption);
+  handleVote = (voteOption, commentToVote) => {
+    if (!commentToVote) {
+      let voteNum = 0;
+      voteOption === "up" ? (voteNum = 1) : (voteNum = -1);
+      let votedArticle = { ...this.state.article };
+      votedArticle.votes = votedArticle.votes + voteNum;
+      this.setState({
+        article: votedArticle
+      });
+      api.voteOnArticle(this.state.article._id, voteOption);
+    } else {
+      let voteNum = 0;
+      voteOption === "up" ? (voteNum = 1) : (voteNum = -1);
+      const updatedComments = this.state.comments.map(comment => {
+        if (comment === commentToVote) {
+          return {
+            ...comment,
+            votes: comment.votes + voteNum
+          };
+        }
+        return comment;
+      });
+      this.setState({
+        comments: updatedComments
+      });
+
+      api.voteOnComment(commentToVote._id, voteOption);
+    }
   };
 }
 

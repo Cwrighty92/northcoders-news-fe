@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import "./Comments.css";
 import * as api from "../../Api";
-import VoteCommentButtons from "./VoteCommentButtons";
+import SortButtons from "../Articles/SortButtons";
 import PostComment from "./PostComment";
 import CommentBody from "./CommentBody";
-import SortCommentButtons from "./SortCommentButtons";
 import DeleteButton from "./DeleteButton";
 import PropTypes from "prop-types";
-
+import VoteButtons from "../Article/VoteButtons";
 class Comments extends Component {
   state = {
     comments: []
@@ -34,7 +33,7 @@ class Comments extends Component {
   render() {
     return (
       <div className="comments section">
-        <SortCommentButtons sortComments={this.sortComments} />
+        <SortButtons sortComments={this.sortComments} />
         {this.state.comments &&
           this.state.comments.map(comment => {
             return (
@@ -42,11 +41,12 @@ class Comments extends Component {
                 <CommentBody comment={comment} username={this.props.username} />
                 {this.props.articleId &&
                   this.props.currentUser && (
-                    <VoteCommentButtons
+                    <VoteButtons
                       comment={comment}
                       handleVote={this.handleVote}
                     />
                   )}
+
                 {comment.created_by.username === "tickle122" &&
                   this.props.currentUser && (
                     <DeleteButton
@@ -82,7 +82,7 @@ class Comments extends Component {
     }
   };
 
-  handleVote = (commentToVote, voteOption) => {
+  handleVote = (voteOption, commentToVote) => {
     let voteNum = 0;
     voteOption === "up" ? (voteNum = 1) : (voteNum = -1);
     const updatedComments = this.state.comments.map(comment => {

@@ -15,7 +15,7 @@
   background-color: wheat;
   align-items: center;
   border: black solid 10px;
-  border-radius: 50px;
+  border-radius: 10px;
 }
 .user-tabs:hover {
   background-color: lemonchiffon;
@@ -48,4 +48,3 @@
   color: black;
   font-family: "Russo One", sans-serif;
 }
-

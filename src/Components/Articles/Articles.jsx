@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import "./Articles.css";
 import Heading from "../Heading";
 import Topics from "../Topics";
-import ArticleSortButtons from "./ArticleSortButtons";
 import ArticlesBody from "./ArticlesBody";
 import * as api from "../../Api";
+import SortButtons from "./SortButtons";
 class Articles extends Component {
   state = {
     articles: []
@@ -24,7 +24,7 @@ class Articles extends Component {
             <Heading />
             <Topics />
             <h3>Articles({filteredArticles.length})</h3>
-            <ArticleSortButtons sortArticles={this.sortArticles} />{" "}
+            <SortButtons sortArticles={this.sortArticles} />
           </div>
         )}
         <div className="article-window">
