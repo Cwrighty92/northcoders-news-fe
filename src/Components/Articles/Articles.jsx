@@ -12,6 +12,7 @@ class Articles extends Component {
     articles: [],
     errorArticles: false
   };
+
   componentDidMount() {
     api
       .fetchArticles()
@@ -26,7 +27,7 @@ class Articles extends Component {
     if (this.state.errorArticles) return <Redirect to="/error/500" />;
     else {
       let filteredArticles = this.filterArticles();
-      return !this.state.articles.length ? (
+      return !filteredArticles.length ? (
         <p> Loading </p>
       ) : (
         <div className="article-window">
