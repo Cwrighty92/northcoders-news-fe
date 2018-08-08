@@ -51,6 +51,7 @@
   background-color: bisque;
   font-size: 14px;
   border-radius: 9px;
+  cursor: pointer;
 }
 
 .sort-button:hover {

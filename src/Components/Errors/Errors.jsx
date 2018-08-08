@@ -4,6 +4,10 @@ const Error404 = ({ match: { params }, location }) => {
   if (params.statusCode === "404")
     return (
       <div className="log-in-page">
+        <img
+          src="http://www.masedperu.com/images/home/404.png"
+          alt="404 error sign coming out of hole in ground"
+        />
         <p>
           We couldn't find the {location.state.from} you were
           {location.state.from === "comment"
@@ -11,10 +15,6 @@ const Error404 = ({ match: { params }, location }) => {
             : " looking for"}, please try again with a valid{" "}
           {location.state.from}
         </p>
-        <img
-          src="http://www.masedperu.com/images/home/404.png"
-          alt="404 error sign coming out of hole in ground"
-        />
       </div>
     );
   if (params.statusCode === "500")
