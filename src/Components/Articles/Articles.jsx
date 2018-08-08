@@ -5,35 +5,47 @@ import Topics from "../Topics";
 import ArticlesBody from "./ArticlesBody";
 import * as api from "../../Api";
 import SortButtons from "./SortButtons";
+import { Redirect } from "react-router-dom";
+
 class Articles extends Component {
   state = {
-    articles: []
+    articles: [],
+    errorArticles: false
   };
   componentDidMount() {
-    api.fetchArticles().then(({ data }) => {
-      this.setState({ articles: data.articles });
-    });
+    api
+      .fetchArticles()
+      .then(({ data }) => {
+        this.setState({ articles: data.articles });
+      })
+      .catch(err => {
+        this.setState({ errorArticles: true });
+      });
   }
   render() {
-    let filteredArticles = this.filterArticles();
-
-    return (
-      <div className="article-window">
-        {!this.props.username && (
-          <div className="article-titles">
-            <Heading />
-            <Topics />
-            <h3>Articles({filteredArticles.length})</h3>
-            <SortButtons sortArticles={this.sortArticles} />
-          </div>
-        )}
+    if (this.state.errorArticles) return <Redirect to="/error/500" />;
+    else {
+      let filteredArticles = this.filterArticles();
+      return !this.state.articles.length ? (
+        <p> Loading </p>
+      ) : (
         <div className="article-window">
-          {filteredArticles.map(article => {
-            return <ArticlesBody article={article} key={article._id} />;
-          })}
+          {!this.props.username && (
+            <div className="article-titles">
+              <Heading />
+              <Topics />
+              <h3>Articles({filteredArticles.length})</h3>
+              <SortButtons sortArticles={this.sortArticles} />
+            </div>
+          )}
+          <div className="article-window">
+            {filteredArticles.map(article => {
+              return <ArticlesBody article={article} key={article._id} />;
+            })}
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
   sortArticles = sortOption => {
     let sortedArticles = [];

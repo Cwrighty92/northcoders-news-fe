@@ -3,21 +3,32 @@ import "./Article.css";
 import * as api from "../../Api";
 import ArticleBody from "./ArticleBody";
 import Comments from "../Comments/Comments";
+import { Redirect } from "react-router-dom";
 
 class Article extends Component {
   state = {
-    article: {}
+    article: {},
+    invalidUrl: false
   };
-  componentDidMount = async () => {
-    try {
-      const { data } = await api.fetchArticle(this.props.articleId);
-      this.setState({
-        article: data.article
+  componentDidMount() {
+    api
+      .fetchArticle(this.props.articleId)
+      .then(({ data }) => {
+        this.setState({ article: data.article });
+      })
+      .catch(err => {
+        this.setState({ invalidUrl: true });
       });
-    } catch (err) {}
-  };
+  }
   render() {
-    return (
+    if (this.state.invalidUrl)
+      return (
+        <Redirect to={{ pathname: "/error/404", state: { from: "article" } }} />
+      );
+
+    return !Object.keys(this.state.article).length ? (
+      <p>Loading</p>
+    ) : (
       <div className="article-page">
         <ArticleBody
           article={this.state.article}
@@ -28,40 +39,20 @@ class Article extends Component {
           <Comments
             articleId={this.props.articleId}
             currentUser={this.props.currentUser}
-            handleVote={this.handleVote}
           />
         </div>
       </div>
     );
   }
-  handleVote = (voteOption, commentToVote) => {
-    if (!commentToVote) {
-      let voteNum = 0;
-      voteOption === "up" ? (voteNum = 1) : (voteNum = -1);
-      let votedArticle = { ...this.state.article };
-      votedArticle.votes = votedArticle.votes + voteNum;
-      this.setState({
-        article: votedArticle
-      });
-      api.voteOnArticle(this.state.article._id, voteOption);
-    } else {
-      let voteNum = 0;
-      voteOption === "up" ? (voteNum = 1) : (voteNum = -1);
-      const updatedComments = this.state.comments.map(comment => {
-        if (comment === commentToVote) {
-          return {
-            ...comment,
-            votes: comment.votes + voteNum
-          };
-        }
-        return comment;
-      });
-      this.setState({
-        comments: updatedComments
-      });
-
-      api.voteOnComment(commentToVote._id, voteOption);
-    }
+  handleVote = voteOption => {
+    let voteNum = 0;
+    voteOption === "up" ? (voteNum = 1) : (voteNum = -1);
+    let votedArticle = { ...this.state.article };
+    votedArticle.votes = votedArticle.votes + voteNum;
+    this.setState({
+      article: votedArticle
+    });
+    api.voteOnArticle(this.state.article._id, voteOption);
   };
 }
 

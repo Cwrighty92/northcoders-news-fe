@@ -17,7 +17,7 @@ class PostComment extends Component {
           />
         </div>
         <button
-          className="post-comment-button"
+          className="vote-up-button"
           onClick={() => {
             this.props.addComment(this.props.articleid, this.state.commentBody);
           }}

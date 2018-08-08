@@ -7,6 +7,7 @@ import Users from "./Components/Users/Users";
 import User from "./Components/User/User";
 import TopNavBar from "./Components/TopNavBar";
 import LogIn from "./Components/Login/LogIn";
+import Error from "./Components/Errors/Errors";
 import * as api from "./Api";
 
 class App extends Component {
@@ -32,7 +33,6 @@ class App extends Component {
     }
   }
   render() {
-    const { Provider } = React.createContext();
     return (
       <div className="app-page">
         <TopNavBar
@@ -40,63 +40,57 @@ class App extends Component {
           handleLogIn={this.handleLogIn}
         />
         <div className="pages">
-          <Provider value={this.state.currentUser}>
-            <Route
-              exact
-              path="/"
-              render={() => (
-                <LogIn
-                  handleLogIn={this.handleLogIn}
-                  currentUser={this.state.currentUser}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/articles"
-              render={() => <Articles currentUser={this.state.currentUser} />}
-            />
-            <Route
-              exact
-              path="/topics/:topicid"
-              render={props => (
-                <Articles
-                  topicId={props.match.params.topicid}
-                  currentUser={this.state.currentUser}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/articles/:articleid"
-              render={props => (
-                <Article
-                  articleId={props.match.params.articleid}
-                  currentUser={this.state.currentUser}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/users"
-              render={props => (
-                <Users
-                  users={this.state.users}
-                  currentUser={this.state.currentUser}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/users/:username"
-              render={props => (
-                <User
-                  username={props.match.params.username}
-                  currentUser={this.state.currentUser}
-                />
-              )}
-            />
-          </Provider>
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <LogIn
+                handleLogIn={this.handleLogIn}
+                currentUser={this.state.currentUser}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/articles"
+            render={() => <Articles currentUser={this.state.currentUser} />}
+          />
+          <Route
+            exact
+            path="/topics/:topicid"
+            render={props => (
+              <Articles
+                topicId={props.match.params.topicid}
+                currentUser={this.state.currentUser}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/articles/:articleid"
+            render={props => (
+              <Article
+                articleId={props.match.params.articleid}
+                currentUser={this.state.currentUser}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/users"
+            render={() => <Users currentUser={this.state.currentUser} />}
+          />
+          <Route
+            exact
+            path="/users/:username"
+            render={props => (
+              <User
+                username={props.match.params.username}
+                currentUser={this.state.currentUser}
+              />
+            )}
+          />
+          <Route path="/error/:statusCode" component={Error} />
         </div>
       </div>
     );

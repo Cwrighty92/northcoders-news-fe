@@ -7,9 +7,12 @@ import CommentBody from "./CommentBody";
 import DeleteButton from "./DeleteButton";
 import PropTypes from "prop-types";
 import VoteButtons from "../Article/VoteButtons";
+import { Redirect } from "react-router-dom";
+
 class Comments extends Component {
   state = {
-    comments: []
+    comments: [],
+    errorComments: false
   };
 
   componentDidMount() {
@@ -19,53 +22,74 @@ class Comments extends Component {
         .then(({ data }) => {
           this.setState({ comments: data.comments });
         })
-        .catch(console.log);
-    } else {
-      api.fetchUserComments(this.props.username).then(({ data }) => {
-        const userComments = data.comments.filter(comment => {
-          return comment.created_by.username === this.props.username;
+        .catch(err => {
+          this.setState({
+            errorComments: true
+          });
         });
-        this.setState({ comments: userComments });
-      });
+    } else {
+      api
+        .fetchUserComments(this.props.username)
+        .then(({ data }) => {
+          const userComments = data.comments.filter(comment => {
+            return comment.created_by.username === this.props.username;
+          });
+          this.setState({ comments: userComments });
+        })
+        .catch(err => {
+          this.setState({
+            errorComments: true
+          });
+        });
     }
   }
 
   render() {
-    return (
-      <div className="comments section">
-        <SortButtons sortComments={this.sortComments} />
-        {this.state.comments &&
-          this.state.comments.map(comment => {
-            return (
-              <div className="individual-comment-window" key={comment._id}>
-                <CommentBody comment={comment} username={this.props.username} />
-                {this.props.articleId &&
-                  this.props.currentUser && (
-                    <VoteButtons
-                      comment={comment}
-                      handleVote={this.handleVote}
-                    />
-                  )}
+    if (this.state.invalidComment)
+      return (
+        <Redirect to={{ pathname: "error/404", state: { from: "comment" } }} />
+      );
+    else
+      return !this.state.comments.length ? (
+        <p>Loading</p>
+      ) : (
+        <div className="comments section">
+          <SortButtons sortComments={this.sortComments} />
+          {this.state.comments &&
+            this.state.comments.map(comment => {
+              return (
+                <div className="individual-comment-window" key={comment._id}>
+                  <CommentBody
+                    comment={comment}
+                    username={this.props.username}
+                  />
+                  {this.props.articleId &&
+                    this.props.currentUser && (
+                      <VoteButtons
+                        comment={comment}
+                        handleVote={this.handleVote}
+                      />
+                    )}
 
-                {comment.created_by.username === "tickle122" &&
-                  this.props.currentUser && (
-                    <DeleteButton
-                      deleteComment={this.deleteComment}
-                      comment={comment}
-                    />
-                  )}
-              </div>
-            );
-          })}
-        {this.props.articleId &&
-          this.props.currentUser && (
-            <PostComment
-              articleid={this.props.articleId}
-              addComment={this.addComment}
-            />
-          )}
-      </div>
-    );
+                  {comment.created_by.username === "tickle122" &&
+                    this.props.currentUser && (
+                      <DeleteButton
+                        deleteComment={this.deleteComment}
+                        comment={comment}
+                      />
+                    )}
+                </div>
+              );
+            })}
+          {this.props.articleId &&
+            this.props.currentUser && (
+              <PostComment
+                articleid={this.props.articleId}
+                addComment={this.addComment}
+              />
+            )}
+        </div>
+      );
   }
   sortComments = sortOption => {
     let sortedComments = [];
@@ -98,7 +122,9 @@ class Comments extends Component {
       comments: updatedComments
     });
 
-    api.voteOnComment(commentToVote._id, voteOption);
+    api
+      .voteOnComment(commentToVote._id, voteOption)
+      .catch(err => this.setState({ errorComments: true }));
   };
   addComment = (articleid, data) => {
     data = {
@@ -111,13 +137,18 @@ class Comments extends Component {
       .then(({ data: { comment } }) => {
         this.setState({ comments: [...this.state.comments, comment] });
       })
+      .catch(err => {
+        this.setState({ errorComments: true });
+      })
       .then(() => {
         api
           .fetchArticleComments(this.props.articleId)
           .then(({ data }) => {
             this.setState({ comments: data.comments });
           })
-          .catch(console.log);
+          .catch(err => {
+            this.setState({ errorComments: true });
+          });
       });
   };
   deleteComment = commentToDelete => {
@@ -126,9 +157,7 @@ class Comments extends Component {
     });
     this.setState({ comments: updatedComments });
 
-    api.deleteComment(commentToDelete._id).catch(err => {
-      this.setState({ invalidComment: true });
-    });
+    api.deleteComment(commentToDelete._id);
   };
 }
 
