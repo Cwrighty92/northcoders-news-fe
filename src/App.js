@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import Articles from "./Components/Articles/Articles";
 import Article from "./Components/Article/Article";
 import Users from "./Components/Users/Users";
 import User from "./Components/User/User";
 import TopNavBar from "./Components/TopNavBar";
-import LogIn from "./Components/Login/LogIn";
-import Error from "./Components/Errors/Errors";
+import LogIn from "./Components/LogIn/LogIn";
+import Error404 from "./Components/Errors/Errors";
 import * as api from "./Api";
 
 class App extends Component {
@@ -40,57 +40,60 @@ class App extends Component {
           handleLogIn={this.handleLogIn}
         />
         <div className="pages">
-          <Route
-            exact
-            path="/"
-            render={() => (
-              <LogIn
-                handleLogIn={this.handleLogIn}
-                currentUser={this.state.currentUser}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/articles"
-            render={() => <Articles currentUser={this.state.currentUser} />}
-          />
-          <Route
-            exact
-            path="/topics/:topicid"
-            render={props => (
-              <Articles
-                topicId={props.match.params.topicid}
-                currentUser={this.state.currentUser}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/articles/:articleid"
-            render={props => (
-              <Article
-                articleId={props.match.params.articleid}
-                currentUser={this.state.currentUser}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/users"
-            render={() => <Users currentUser={this.state.currentUser} />}
-          />
-          <Route
-            exact
-            path="/users/:username"
-            render={props => (
-              <User
-                username={props.match.params.username}
-                currentUser={this.state.currentUser}
-              />
-            )}
-          />
-          <Route path="/error/:statusCode" component={Error} />
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <LogIn
+                  handleLogIn={this.handleLogIn}
+                  currentUser={this.state.currentUser}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/articles"
+              render={() => <Articles currentUser={this.state.currentUser} />}
+            />
+            <Route
+              exact
+              path="/topics/:topicid"
+              render={props => (
+                <Articles
+                  topicId={props.match.params.topicid}
+                  currentUser={this.state.currentUser}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/articles/:articleid"
+              render={props => (
+                <Article
+                  articleId={props.match.params.articleid}
+                  currentUser={this.state.currentUser}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/users"
+              render={() => <Users currentUser={this.state.currentUser} />}
+            />
+            <Route
+              exact
+              path="/users/:username"
+              render={props => (
+                <User
+                  username={props.match.params.username}
+                  currentUser={this.state.currentUser}
+                />
+              )}
+            />
+            <Route path="/error/:statusCode" component={Error404} />
+            <Route exact path="*" component={Error404} />
+          </Switch>
         </div>
       </div>
     );
