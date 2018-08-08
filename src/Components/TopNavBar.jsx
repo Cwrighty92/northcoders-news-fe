@@ -24,9 +24,17 @@ const TopNavBar = props => {
         </nav>
       )}
       {!props.currentUser && (
-        <NavLink to={"/"} className="nav-item-top">
-          Log In
-        </NavLink>
+        <nav>
+          <NavLink to={"/articles"} className="nav-item-top">
+            Articles
+          </NavLink>
+          <NavLink to={"/users"} className="nav-item-top">
+            Members
+          </NavLink>
+          <NavLink to={"/"} className="nav-item-top">
+            Log In
+          </NavLink>
+        </nav>
       )}
     </nav>
   );

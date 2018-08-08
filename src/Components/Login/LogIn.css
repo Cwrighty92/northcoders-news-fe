@@ -1,0 +1,40 @@
+.log-in-title {
+  font-family: "Open Sans", sans-serif;
+  text-align: center;
+}
+
+.log-in-page {
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-profile-pic {
+  margin: 20px;
+  height: 300px;
+}
+.log-in-body {
+  display: flex;
+  justify-content: center;
+}
+.log-in-input {
+  font-size: 20px;
+  width: 200px;
+  height: 25px;
+}
+.log-in-button {
+  height: 31px;
+  width: 60px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 0px 5px;
+  cursor: pointer;
+  background-color: green;
+}
+.log-in-button:hover {
+  background-color: blue;
+}
