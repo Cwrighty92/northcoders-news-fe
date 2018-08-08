@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./Articles.css";
-import Heading from "../Heading";
-import Topics from "../Topics";
+import Heading from "./Heading";
+import Topics from "./Topics";
 import ArticlesBody from "./ArticlesBody";
 import * as api from "../../Api";
 import SortButtons from "./SortButtons";

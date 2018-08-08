@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import "../App.css";
-import * as api from "../Api";
+import "../../App.css";
+import * as api from "../../Api";
 
 class Topics extends Component {
   state = {
