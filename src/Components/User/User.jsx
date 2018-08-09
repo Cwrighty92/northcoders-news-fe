@@ -3,9 +3,9 @@ import "./User.css";
 import * as api from "../../Api";
 import Comments from "../Comments/Comments";
 import Articles from "../Articles/Articles";
-import UserBody from "./UserBody";
 import { Redirect } from "react-router-dom";
 import Loader from "../Loader";
+import UsersBody from "../Users/UsersBody";
 class User extends Component {
   state = {
     user: {},
@@ -32,7 +32,7 @@ class User extends Component {
         <Loader />
       ) : (
         <div className="user-page">
-          <UserBody user={this.state.user} />
+          <UsersBody user={this.state.user} />
           <div className="user-articles">
             <Articles username={this.props.username} />
           </div>
