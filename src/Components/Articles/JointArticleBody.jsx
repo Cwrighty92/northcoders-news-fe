@@ -5,6 +5,7 @@ import "./Articles.css";
 import "../Article/Article.css";
 import PropTypes from "prop-types";
 import VoteButtons from "../Article/VoteButtons";
+
 const JoinArticleBody = props => {
   if (props.articles)
     return (
