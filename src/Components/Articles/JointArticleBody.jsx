@@ -7,41 +7,32 @@ import PropTypes from "prop-types";
 import VoteButtons from "../Article/VoteButtons";
 
 const JoinArticleBody = props => {
-  if (props.articles)
-    return (
-      <div className="article-tabs">
-        <div className="article-body">
+  return (
+    <div className="article-tabs">
+      <div className="article-body">
+        {props.articles && (
           <Link to={`/articles/${props.article._id}`} className="article-title">
             <h3>{props.article.title}</h3>
           </Link>
-          <br />
-          <p>Created By: {props.article.created_by.username}</p>
-          <p>{moment(props.article.created_at).format("llll")}</p>
-          <p>Votes: {props.article.votes}</p>
-          <p>Comments: {props.article.commentCount}</p>
-        </div>
-      </div>
-    );
-  else
-    return (
-      <div className="single-article">
-        <div className="article-body">
+        )}
+        {!props.articles && (
           <h3 className="article-title">{props.article.title}</h3>
-          <p>
-            Created by:
-            {props.article.title && props.article.created_by.username}
-          </p>
-          <p>{props.article.body}</p>
-          <p>Votes: {props.article.votes}</p>
-          {props.currentUser && (
+        )}
+        <p>Created By: {props.article.created_by.username}</p>
+        {!props.articles && <p>{props.article.body}</p>}
+        <p>{moment(props.article.created_at).format("llll")}</p>
+        <p>Votes: {props.article.votes}</p>
+        {!props.articles &&
+          props.currentUser && (
             <VoteButtons
               handleVote={props.handleVote}
               article={props.article}
             />
           )}
-        </div>
+        <p>Comments: {props.article.commentCount}</p>
       </div>
-    );
+    </div>
+  );
 };
 
 JoinArticleBody.propTypes = {
