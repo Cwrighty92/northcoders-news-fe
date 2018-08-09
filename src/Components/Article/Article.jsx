@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import "./Article.css";
 import * as api from "../../Api";
-import ArticleBody from "./ArticleBody";
 import Comments from "../Comments/Comments";
 import { Redirect } from "react-router-dom";
 import Loader from "../Loader";
+import JointArticleBody from "../Articles/JointArticleBody";
 class Article extends Component {
   state = {
     article: {},
@@ -30,7 +30,7 @@ class Article extends Component {
       <Loader />
     ) : (
       <div className="article-page">
-        <ArticleBody
+        <JointArticleBody
           article={this.state.article}
           handleVote={this.handleVote}
           currentUser={this.props.currentUser}

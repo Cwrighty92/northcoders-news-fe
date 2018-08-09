@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import "./Articles.css";
 import Heading from "./Heading";
 import Topics from "./Topics";
-import ArticlesBody from "./ArticlesBody";
 import * as api from "../../Api";
 import SortButtons from "./SortButtons";
 import { Redirect } from "react-router-dom";
 import Loader from "../Loader";
-
+import JointArticleBody from "./JointArticleBody";
 class Articles extends Component {
   state = {
     articles: [],
@@ -42,7 +41,13 @@ class Articles extends Component {
           )}
           <div className="article-window">
             {filteredArticles.map(article => {
-              return <ArticlesBody article={article} key={article._id} />;
+              return (
+                <JointArticleBody
+                  article={article}
+                  key={article._id}
+                  articles="true"
+                />
+              );
             })}
           </div>
         </div>
