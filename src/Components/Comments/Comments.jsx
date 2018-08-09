@@ -8,7 +8,7 @@ import DeleteButton from "./DeleteButton";
 import PropTypes from "prop-types";
 import VoteButtons from "../Article/VoteButtons";
 import { Redirect } from "react-router-dom";
-
+import Loader from "../Loader";
 class Comments extends Component {
   state = {
     comments: [],
@@ -51,7 +51,7 @@ class Comments extends Component {
       );
     else
       return !this.state.comments.length ? (
-        <p>Loading</p>
+        <Loader />
       ) : (
         <div className="comments section">
           <SortButtons sortComments={this.sortComments} />

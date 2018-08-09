@@ -3,6 +3,7 @@ import "./Users.css";
 import UsersBody from "./UsersBody";
 import * as api from "../../Api";
 import { Redirect } from "react-router-dom";
+import Loader from "../Loader";
 class Users extends Component {
   state = {
     users: [],
@@ -23,7 +24,7 @@ class Users extends Component {
     if (this.state.errorUsers) return <Redirect to="/error/500" />;
     else
       return !this.state.users.length ? (
-        <p>Loading</p>
+        <Loader />
       ) : (
         <div>
           <div className="users-page">

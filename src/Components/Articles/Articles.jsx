@@ -6,6 +6,7 @@ import ArticlesBody from "./ArticlesBody";
 import * as api from "../../Api";
 import SortButtons from "./SortButtons";
 import { Redirect } from "react-router-dom";
+import Loader from "../Loader";
 
 class Articles extends Component {
   state = {
@@ -28,7 +29,7 @@ class Articles extends Component {
     else {
       let filteredArticles = this.filterArticles();
       return !filteredArticles.length ? (
-        <p> Loading </p>
+        <Loader />
       ) : (
         <div className="article-window">
           {!this.props.username && (

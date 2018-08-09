@@ -4,7 +4,7 @@ import * as api from "../../Api";
 import ArticleBody from "./ArticleBody";
 import Comments from "../Comments/Comments";
 import { Redirect } from "react-router-dom";
-
+import Loader from "../Loader";
 class Article extends Component {
   state = {
     article: {},
@@ -27,7 +27,7 @@ class Article extends Component {
       );
 
     return !Object.keys(this.state.article).length ? (
-      <p>Loading</p>
+      <Loader />
     ) : (
       <div className="article-page">
         <ArticleBody

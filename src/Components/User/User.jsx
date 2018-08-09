@@ -5,7 +5,7 @@ import Comments from "../Comments/Comments";
 import Articles from "../Articles/Articles";
 import UserBody from "./UserBody";
 import { Redirect } from "react-router-dom";
-
+import Loader from "../Loader";
 class User extends Component {
   state = {
     user: {},
@@ -29,7 +29,7 @@ class User extends Component {
       );
     else
       return !Object.keys(this.state.user).length ? (
-        <p>Loading</p>
+        <Loader />
       ) : (
         <div className="user-page">
           <UserBody user={this.state.user} />
