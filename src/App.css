@@ -29,7 +29,6 @@ header {
 .nav-item-top:hover {
   text-decoration: none;
   color: gold;
-  margin: 5px;
 }
 .nav-item {
   text-decoration: none;
@@ -45,12 +44,10 @@ header {
 
 .app-page {
   display: grid;
-  grid-template-columns: 1fr;
 }
 .pages {
   display: flex;
   justify-content: center;
-  width: auto;
 }
 
 .NC-title {

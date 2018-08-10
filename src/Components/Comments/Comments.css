@@ -19,7 +19,7 @@
 .vote-up-button {
   background-color: #4caf50;
   border-radius: 8px;
-  width: 80px;
+  width: auto;
   color: white;
   text-align: center;
   text-decoration: none;
@@ -31,7 +31,7 @@
 .vote-down-button {
   background-color: red;
   border-radius: 8px;
-  width: 80px;
+  width: auto;
   color: white;
   text-align: center;
   text-decoration: none;
