@@ -16,14 +16,14 @@ npm install
 
 This will install the following dependencies -
 
-````
+`````
     "react-dom": "^16.4.1",
     "react-scripts": "1.1.4"
     "axios": "^0.18.0",
     "moment": "^2.22.2",
     "react": "^16.4.2",
     "react-router-dom": "^4.3.1"
-    ```
+````
 
 ## Live Hosted application
 
@@ -36,14 +36,14 @@ To run the application run the following command in terminal:
 
 npm start
 
-```
+````
 React will start a development server and open a browser window to show the Northcoders News App.
 
 ## Built With
-
+````
 - [NPM](https://docs.npmjs.com) - JavaScript package manager
 - [React](https://reactjs.org) - JavaScript based front-end framework
 - [React Router DOM](https://github.com/ReactTraining/react-router#readme) - Routing for React
 - [Axios](https://github.com/axios/axios) - Promise based HTTP client for the browser and node.js
 - [Moment] (https://momentjs.com/) - Manipulate time formats  
-```
+`````
