@@ -8,25 +8,35 @@ Ensure you have at least NodeJS v10.1.0 installed on your machine. JavaScript co
 
 ## Installing
 
-1.  Fork and clone this repository to your machine
-2.  Using terminal cd to the cloned directory and run this command:
+1.  Clone this repository to your machine
 
 ```
 npm install
 ```
 
+This will install the following dependencies -
+
+````
+    "react-dom": "^16.4.1",
+    "react-scripts": "1.1.4"
+    "axios": "^0.18.0",
+    "moment": "^2.22.2",
+    "react": "^16.4.2",
+    "react-router-dom": "^4.3.1"
+    ```
+
 ## Live Hosted application
 
-- https://vigilant-knuth-0c5394.netlify.com/
+- https://gifted-pasteur-b0a12c.netlify.com
 
 ## Running the app
 
-To run the tests run the following command in terminal:
+To run the application run the following command in terminal:
+````
 
-```
 npm start
-```
 
+```
 React will start a development server and open a browser window to show the Northcoders News App.
 
 ## Built With
@@ -35,3 +45,5 @@ React will start a development server and open a browser window to show the Nort
 - [React](https://reactjs.org) - JavaScript based front-end framework
 - [React Router DOM](https://github.com/ReactTraining/react-router#readme) - Routing for React
 - [Axios](https://github.com/axios/axios) - Promise based HTTP client for the browser and node.js
+- [Moment] (https://momentjs.com/) - Manipulate time formats  
+```
