@@ -27,7 +27,7 @@ This will install the following dependencies -
 
 ## Live Hosted application
 
-- https://gifted-pasteur-b0a12c.netlify.com
+- https://friendly-ride-3ef37d.netlify.com
 
 ## Running the app
 
