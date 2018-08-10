@@ -5,6 +5,8 @@ import Comments from "../Comments/Comments";
 import { Redirect } from "react-router-dom";
 import Loader from "../Loader";
 import JointArticleBody from "./JointArticleBody";
+import PropTypes from "prop-types";
+
 class Article extends Component {
   state = {
     article: {},
@@ -56,4 +58,8 @@ class Article extends Component {
   };
 }
 
+Article.propTypes = {
+  articleId: PropTypes.string.isRequired,
+  currentUser: PropTypes.object
+};
 export default Article;

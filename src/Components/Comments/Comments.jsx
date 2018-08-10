@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 import VoteButtons from "../Articles/VoteButtons";
 import { Redirect } from "react-router-dom";
 import Loader from "../Loader";
+
 class Comments extends Component {
   state = {
     comments: [],
@@ -163,7 +164,8 @@ class Comments extends Component {
 
 Comments.propTypes = {
   articleId: PropTypes.string,
-  currentUser: PropTypes.object
+  currentUser: PropTypes.object,
+  username: PropTypes.string
 };
 
 export default Comments;

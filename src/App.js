@@ -76,20 +76,11 @@ class App extends Component {
                 />
               )}
             />
-            <Route
-              exact
-              path="/users"
-              render={() => <Users currentUser={this.state.currentUser} />}
-            />
+            <Route exact path="/users" component={Users} />
             <Route
               exact
               path="/users/:username"
-              render={props => (
-                <User
-                  username={props.match.params.username}
-                  currentUser={this.state.currentUser}
-                />
-              )}
+              render={props => <User username={props.match.params.username} />}
             />
             <Route path="/error/:statusCode" component={Error404} />
             <Route exact path="*" component={Error404} />

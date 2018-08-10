@@ -45,7 +45,10 @@ const JoinArticleBody = props => {
 };
 
 JoinArticleBody.propTypes = {
-  article: PropTypes.object.isRequired
+  article: PropTypes.object.isRequired,
+  handleVote: PropTypes.func,
+  currentUser: PropTypes.object,
+  articles: PropTypes.string
 };
 
 export default JoinArticleBody;

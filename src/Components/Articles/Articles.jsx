@@ -7,6 +7,8 @@ import SortButtons from "./SortButtons";
 import { Redirect } from "react-router-dom";
 import Loader from "../Loader";
 import JointArticleBody from "./JointArticleBody";
+import PropTypes from "prop-types";
+
 class Articles extends Component {
   state = {
     articles: [],
@@ -84,5 +86,11 @@ class Articles extends Component {
     return filteredArticles;
   };
 }
+
+Articles.propTypes = {
+  currentUser: PropTypes.object,
+  topicId: PropTypes.string,
+  username: PropTypes.string
+};
 
 export default Articles;

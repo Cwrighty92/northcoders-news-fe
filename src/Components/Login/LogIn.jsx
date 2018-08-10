@@ -1,7 +1,7 @@
 import React from "react";
 import "./LogIn.css";
 import LogInButton from "./LogInButton";
-
+import PropTypes from "prop-types";
 const LogIn = props => {
   return (
     <div className="log-in-page">
@@ -20,4 +20,8 @@ const LogIn = props => {
   );
 };
 
+LogIn.propTypes = {
+  currentUser: PropTypes.object,
+  handleLogIn: PropTypes.func.isRequired
+};
 export default LogIn;

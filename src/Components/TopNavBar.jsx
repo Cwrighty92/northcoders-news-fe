@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "../App.css";
+import PropTypes from "prop-types";
 const TopNavBar = props => {
   const activeStyle = { color: "gold" };
   return (
@@ -10,10 +11,10 @@ const TopNavBar = props => {
         className="nav-item-top"
         activeStyle={activeStyle}
       >
-        Todays Articles |
+        Todays Articles
       </NavLink>
       <NavLink to={"/users"} className="nav-item-top" activeStyle={activeStyle}>
-        Members |
+        Members
       </NavLink>
       {props.currentUser && (
         <NavLink
@@ -33,6 +34,11 @@ const TopNavBar = props => {
       )}
     </nav>
   );
+};
+
+TopNavBar.propTypes = {
+  currentUser: PropTypes.object,
+  handleLogIn: PropTypes.func.isRequired
 };
 
 export default TopNavBar;

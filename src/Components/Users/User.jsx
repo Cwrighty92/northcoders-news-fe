@@ -6,6 +6,8 @@ import Articles from "../Articles/Articles";
 import { Redirect } from "react-router-dom";
 import Loader from "../Loader";
 import UsersBody from "../Users/UsersBody";
+import PropTypes from "prop-types";
+
 class User extends Component {
   state = {
     user: {},
@@ -43,5 +45,9 @@ class User extends Component {
       );
   }
 }
+
+User.propTypes = {
+  username: PropTypes.string.isRequired
+};
 
 export default User;

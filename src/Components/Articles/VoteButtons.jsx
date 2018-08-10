@@ -48,7 +48,9 @@ const VoteArticleButtons = props => {
 };
 
 VoteArticleButtons.propTypes = {
-  handleVote: PropTypes.func.isRequired
+  handleVote: PropTypes.func.isRequired,
+  article: PropTypes.object,
+  comment: PropTypes.object
 };
 
 export default VoteArticleButtons;

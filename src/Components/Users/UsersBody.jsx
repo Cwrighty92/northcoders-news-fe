@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Users.css";
-
+import PropTypes from "prop-types";
 const UsersBody = props => {
   return (
     <Link to={`/users/${props.user.username}`} className="user-link">
@@ -19,5 +19,7 @@ const UsersBody = props => {
     </Link>
   );
 };
-
+UsersBody.propTypes = {
+  user: PropTypes.object.isRequired
+};
 export default UsersBody;
