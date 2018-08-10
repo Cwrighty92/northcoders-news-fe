@@ -54,11 +54,13 @@ class App extends Component {
             <Route
               exact
               path="/articles"
-              render={() => <Articles currentUser={this.state.currentUser} />}
+              render={() => (
+                <Articles currentUser={this.state.currentUser} topicId={null} />
+              )}
             />
             <Route
               exact
-              path="/topics/:topicid"
+              path="/topics/:topicid/articles"
               render={props => (
                 <Articles
                   topicId={props.match.params.topicid}

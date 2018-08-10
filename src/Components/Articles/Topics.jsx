@@ -20,7 +20,7 @@ class Topics extends Component {
         {this.state.topics.map((topic, index) => {
           return (
             <NavLink
-              to={`/topics/${topic._id}`}
+              to={`/topics/${topic._id}/articles`}
               className="nav-item"
               key={index}
             >

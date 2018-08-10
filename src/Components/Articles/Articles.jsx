@@ -12,24 +12,52 @@ import PropTypes from "prop-types";
 class Articles extends Component {
   state = {
     articles: [],
-    errorArticles: false
+    errorArticles500: false,
+    errorArticles404: false
   };
-
+  componentDidUpdate(prevProps) {
+    if (prevProps.topicId !== this.props.topicId) {
+      if (this.props.topicId === null) {
+        api
+          .fetchArticles()
+          .then(({ data }) => {
+            this.setState({ articles: data.articles });
+          })
+          .catch(err => {
+            this.setState({ errorArticles500: true });
+          });
+      }
+      if (this.props.topicId !== null) {
+        api
+          .fetchArticlesByTopic(this.props.topicId)
+          .then(({ data }) => {
+            this.setState({ articles: data.articles });
+          })
+          .catch(err => {
+            this.setState({ errorArticles404: true });
+          });
+      }
+    }
+  }
   componentDidMount() {
-    api
-      .fetchArticles()
-      .then(({ data }) => {
-        this.setState({ articles: data.articles });
-      })
-      .catch(err => {
-        this.setState({ errorArticles: true });
-      });
+    if (this.props.topicId === null)
+      api
+        .fetchArticles()
+        .then(({ data }) => {
+          this.setState({ articles: data.articles });
+        })
+        .catch(err => {
+          this.setState({ errorArticles500: true });
+        });
   }
   render() {
-    if (this.state.errorArticles) return <Redirect to="/error/500" />;
+    if (this.state.errorArticles500) return <Redirect to="/error/500" />;
+    else if (this.state.errorArticles404)
+      return (
+        <Redirect to={{ pathname: "/error/404", state: { from: "Topic" } }} />
+      );
     else {
-      let filteredArticles = this.filterArticles();
-      return !filteredArticles.length ? (
+      return !this.state.articles.length ? (
         <Loader />
       ) : (
         <div className="article-window">
@@ -37,12 +65,12 @@ class Articles extends Component {
             <div className="article-titles">
               <Heading />
               <Topics />
-              <h3>Articles({filteredArticles.length})</h3>
+              <h3>Articles({this.state.articles.length})</h3>
               <SortButtons sortArticles={this.sortArticles} />
             </div>
           )}
           <div className="article-window">
-            {filteredArticles.map(article => {
+            {this.state.articles.map(article => {
               return (
                 <JointArticleBody
                   article={article}
@@ -69,22 +97,6 @@ class Articles extends Component {
       });
       this.setState({ articles: sortedArticles });
     }
-  };
-  filterArticles = () => {
-    let filteredArticles = [];
-    if (this.props.topicId) {
-      filteredArticles = this.state.articles.filter(article => {
-        return article.belongs_to === this.props.topicId;
-      });
-    } else if (this.props.username) {
-      filteredArticles = this.state.articles.filter(article => {
-        return article.created_by.username === this.props.username;
-      });
-    } else {
-      filteredArticles = [...this.state.articles];
-    }
-
-    return filteredArticles;
   };
 }
 
