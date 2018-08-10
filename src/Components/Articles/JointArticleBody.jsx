@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import "./Articles.css";
-import "./Article.css";
 import PropTypes from "prop-types";
 import VoteButtons from "./VoteButtons";
 
@@ -21,15 +20,15 @@ const JoinArticleBody = props => {
         {!props.articles && (
           <h3 className="article-title">{props.article.title}</h3>
         )}
-        <p>
-          <Link
-            className="articles-title"
-            to={`/users/${props.article.created_by.username}`}
-          >
-            Author: {props.article.created_by.username} on{" "}
-            {moment(props.article.created_at).format("llll")}
-          </Link>
-        </p>
+
+        <Link
+          className="articles-title"
+          to={`/users/${props.article.created_by.username}`}
+        >
+          Author: {props.article.created_by.username} on{" "}
+          {moment(props.article.created_at).format("llll")}
+        </Link>
+
         {!props.articles && <p>{props.article.body}</p>}
         <p>Votes: {props.article.votes}</p>
         {!props.articles &&

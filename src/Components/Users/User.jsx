@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./User.css";
+import "./Users.css";
 import * as api from "../../Api";
 import Comments from "../Comments/Comments";
 import Articles from "../Articles/Articles";

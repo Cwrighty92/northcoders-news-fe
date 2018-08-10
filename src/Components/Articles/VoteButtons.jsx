@@ -1,5 +1,5 @@
 import React from "react";
-import "./Article.css";
+import "./Articles.css";
 import PropTypes from "prop-types";
 const VoteArticleButtons = props => {
   if (props.comment) {

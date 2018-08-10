@@ -4,7 +4,7 @@ import "./App.css";
 import Articles from "./Components/Articles/Articles";
 import Article from "./Components/Articles/Article";
 import Users from "./Components/Users/Users";
-import User from "./Components/User/User";
+import User from "./Components/Users/User";
 import TopNavBar from "./Components/TopNavBar";
 import LogIn from "./Components/LogIn/LogIn";
 import Error404 from "./Components/Errors/Errors";

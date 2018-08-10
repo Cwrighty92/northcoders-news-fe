@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./Article.css";
+import "./Articles.css";
 import * as api from "../../Api";
 import Comments from "../Comments/Comments";
 import { Redirect } from "react-router-dom";
