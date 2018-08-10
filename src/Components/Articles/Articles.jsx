@@ -83,6 +83,7 @@ class Articles extends Component {
     } else {
       filteredArticles = [...this.state.articles];
     }
+
     return filteredArticles;
   };
 }

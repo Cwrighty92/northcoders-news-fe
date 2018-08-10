@@ -5,6 +5,10 @@ export const fetchArticles = () => {
   return axios.get(`${apiUrl}/articles`);
 };
 
+export const fetchArticlesByTopic = topicId => {
+  return axios.get(`${apiUrl}/topics/${topicId}/articles`);
+};
+
 export const fetchTopics = () => {
   return axios.get(`${apiUrl}/topics`);
 };
