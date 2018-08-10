@@ -40,15 +40,23 @@ class Articles extends Component {
     }
   }
   componentDidMount() {
-    if (this.props.topicId === null)
-      api
-        .fetchArticles()
-        .then(({ data }) => {
-          this.setState({ articles: data.articles });
-        })
-        .catch(err => {
-          this.setState({ errorArticles500: true });
-        });
+    !this.props.topicId
+      ? api
+          .fetchArticles()
+          .then(({ data }) => {
+            this.setState({ articles: data.articles });
+          })
+          .catch(err => {
+            this.setState({ errorArticles500: true });
+          })
+      : api
+          .fetchArticlesByTopic(this.props.topicId)
+          .then(({ data }) => {
+            this.setState({ articles: data.articles });
+          })
+          .catch(err => {
+            this.setState({ errorArticles404: true });
+          });
   }
   render() {
     if (this.state.errorArticles500) return <Redirect to="/error/500" />;
