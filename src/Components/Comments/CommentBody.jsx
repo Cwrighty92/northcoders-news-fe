@@ -11,7 +11,10 @@ const CommentBody = props => {
           to={`/users/${props.comment.created_by.username}`}
           className="comment-link"
         >
-          <p>Posted By: {props.comment.created_by.username}</p>
+          <p>
+            Posted By: {props.comment.created_by.username} on{" "}
+            {moment(props.comment.created_at).format("llll")}
+          </p>
         </Link>
       )}
       {props.username && (
@@ -19,11 +22,11 @@ const CommentBody = props => {
           to={`/articles/${props.comment.belongs_to._id}`}
           className="comment-link"
         >
-          Belongs To: {props.comment.belongs_to.title}
+          Article: {props.comment.belongs_to.title}
         </Link>
       )}
       <p>{props.comment.body}</p>
-      <p>{moment(props.comment.created_at).format("llll")}</p>
+
       <p>Votes: {props.comment.votes}</p>
     </div>
   );

@@ -29,14 +29,18 @@
   overflow-y: auto;
 }
 
-.article-title {
+.articles-title {
   text-decoration: none;
   color: black;
   font-family: "Open Sans", sans-serif;
 }
 
-.article-title:hover {
+.articles-title:hover {
   color: blue;
+}
+
+.article-title {
+  font-family: "Open Sans", sans-serif;
 }
 
 .sort-button {

@@ -4,7 +4,7 @@ import * as api from "../../Api";
 import Comments from "../Comments/Comments";
 import { Redirect } from "react-router-dom";
 import Loader from "../Loader";
-import JointArticleBody from "../Articles/JointArticleBody";
+import JointArticleBody from "./JointArticleBody";
 class Article extends Component {
   state = {
     article: {},

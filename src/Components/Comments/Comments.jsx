@@ -6,7 +6,7 @@ import PostComment from "./PostComment";
 import CommentBody from "./CommentBody";
 import DeleteButton from "./DeleteButton";
 import PropTypes from "prop-types";
-import VoteButtons from "../Article/VoteButtons";
+import VoteButtons from "../Articles/VoteButtons";
 import { Redirect } from "react-router-dom";
 import Loader from "../Loader";
 class Comments extends Component {

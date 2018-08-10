@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import Articles from "./Components/Articles/Articles";
-import Article from "./Components/Article/Article";
+import Article from "./Components/Articles/Article";
 import Users from "./Components/Users/Users";
 import User from "./Components/User/User";
 import TopNavBar from "./Components/TopNavBar";
