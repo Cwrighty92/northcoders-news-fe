@@ -131,7 +131,7 @@ class Comments extends Component {
     data = {
       body: data,
       belongs_to: articleid,
-      created_by: "5b5efa1381b62f331a19c653"
+      created_by: this.props.currentUser
     };
     api
       .postComment(articleid, data)
