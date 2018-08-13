@@ -6,15 +6,11 @@ Northcoders News is a reddit style front-end news app for Northcoder internal ne
 
 Ensure you have at least NodeJS v10.1.0 installed on your machine. JavaScript code has been written to ES6 standard.
 
-## Installing
+## Dependencies
 
 1.  Clone this repository to your machine
 
-```
-npm install
-```
-
-This will install the following dependencies -
+2. The following dependencies are required -
 
 ```
     "react-dom": "^16.4.1",
