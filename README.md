@@ -27,7 +27,7 @@ This will install the following dependencies -
 
 ## Live Hosted application
 
-- https://friendly-ride-3ef37d.netlify.com
+- https://goofy-bhabha-74031d.netlify.com
 
 ## Running the app
 
