@@ -20,6 +20,11 @@ Ensure you have at least NodeJS v10.1.0 installed on your machine. JavaScript co
     "react": "^16.4.2",
     "react-router-dom": "^4.3.1"
 ```
+3. These can be installed running 
+
+```
+npm install
+```
 
 ## Live Hosted application
 
